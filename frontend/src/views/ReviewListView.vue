@@ -12,14 +12,8 @@
           {{ option.label }}
         </button>
       </div>
-      <button class="flex items-center gap-2 rounded-xl border border-outline-variant/20 bg-surface-container-lowest px-5 py-2 text-sm font-bold text-primary transition-all hover:bg-primary-container/10" @click="exportPosts">
-        <span class="material-symbols-outlined text-lg">download</span>
-        导出审核
-      </button>
-      <button class="flex items-center gap-2 rounded-xl bg-primary px-5 py-2 text-sm font-bold text-on-primary shadow-lg shadow-primary/20 transition-all active:scale-95" @click="loadPosts">
-        <span class="material-symbols-outlined text-lg">refresh</span>
-        <span>刷新数据</span>
-      </button>
+      <AdminActionButton label="导出审核" icon="download" tone="outline" @click="exportPosts" />
+      <AdminActionButton label="刷新数据" icon="refresh" tone="primary" @click="loadPosts" />
     </template>
 
     <div class="mb-8 grid grid-cols-1 gap-4 md:grid-cols-4">

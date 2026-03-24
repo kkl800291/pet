@@ -1,14 +1,8 @@
 <template>
   <AdminLayout title="举报处理列表 3.0" subtitle="实时监控社区安全，快速处理违规上报内容" breadcrumb="举报处理" search-placeholder="搜索举报单号或用户名...">
     <template #actions>
-      <button class="flex items-center gap-2 rounded-xl border border-outline-variant/20 bg-surface-container-lowest px-5 py-2.5 text-sm font-medium text-on-surface transition-all hover:bg-surface-container" @click="showFilters = !showFilters">
-        <span class="material-symbols-outlined text-lg">tune</span>
-        {{ showFilters ? '收起筛选' : '高级筛选' }}
-      </button>
-      <button class="flex items-center gap-2 rounded-xl bg-primary px-6 py-2.5 text-sm font-semibold text-on-primary shadow-lg shadow-primary/20 transition-all hover:bg-primary-dim" @click="loadReports">
-        <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1">refresh</span>
-        刷新
-      </button>
+      <AdminActionButton :label="showFilters ? '收起筛选' : '高级筛选'" icon="tune" tone="outline" @click="showFilters = !showFilters" />
+      <AdminActionButton label="刷新" icon="refresh" tone="primary" @click="loadReports" />
     </template>
 
     <div class="mb-8 grid grid-cols-1 gap-6 md:grid-cols-4">
@@ -111,6 +105,7 @@ import AdminTableActions from '../components/AdminTableActions.vue';
 import AdminTableSkeleton from '../components/AdminTableSkeleton.vue';
 import AdminStatusBadge from '../components/AdminStatusBadge.vue';
 import AdminFilterBar from '../components/AdminFilterBar.vue';
+import AdminActionButton from '../components/AdminActionButton.vue';
 import AdminAvatar from '../components/AdminAvatar.vue';
 import { adminApi } from '../api/admin';
 import { REPORT_STATUS, formatDate, labelOf } from '../assets/labels';

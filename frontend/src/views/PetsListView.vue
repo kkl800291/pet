@@ -1,14 +1,8 @@
 <template>
   <AdminLayout title="宠物档案库" subtitle="对齐 Stitch 的宠物列表页布局，突出档案数量、可见性与快速进入详情" breadcrumb="宠物管理" search-placeholder="搜索宠物 ID 或名称...">
     <template #actions>
-      <button class="flex items-center gap-2 rounded-full border border-outline-variant/20 bg-surface-container-lowest px-6 py-3 font-bold text-primary transition-all hover:bg-primary-container/10" @click="exportPets">
-        <span class="material-symbols-outlined">download</span>
-        导出档案
-      </button>
-      <button class="flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-bold text-on-primary shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]" @click="loadPets">
-        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">refresh</span>
-        刷新档案
-      </button>
+      <AdminActionButton label="导出档案" icon="download" tone="outline" @click="exportPets" />
+      <AdminActionButton label="刷新档案" icon="refresh" tone="primary" @click="loadPets" />
     </template>
 
     <div class="mb-10 grid grid-cols-1 gap-6 md:grid-cols-4">
@@ -72,6 +66,7 @@ import AdminTableActions from '../components/AdminTableActions.vue';
 import AdminStatusBadge from '../components/AdminStatusBadge.vue';
 import AdminFilterBar from '../components/AdminFilterBar.vue';
 import AdminAvatar from '../components/AdminAvatar.vue';
+import AdminActionButton from '../components/AdminActionButton.vue';
 import { adminApi } from '../api/admin';
 import { VISIBILITY, formatDate, labelOf } from '../assets/labels';
 import { useExportCsv } from '../composables/useExportCsv';

@@ -1,5 +1,5 @@
 <template>
-  <button class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold transition-all disabled:cursor-not-allowed disabled:opacity-50" :class="buttonClass" :disabled="disabled" @click="$emit('click')">
+  <button class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold transition-all active:scale-95 disabled:cursor-not-allowed disabled:opacity-50" :class="buttonClass" :disabled="disabled" @click="$emit('click')">
     <span v-if="icon" class="material-symbols-outlined" :class="iconClass">{{ icon }}</span>
     {{ label }}
   </button>

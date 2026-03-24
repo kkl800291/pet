@@ -1,14 +1,8 @@
 <template>
   <AdminLayout title="风控记录" subtitle="审计动作列表按目标对象、执行人和细节统一呈现，靠近 Stitch 风控页信息密度" breadcrumb="风控记录" search-placeholder="搜索动作 / 目标ID...">
     <template #actions>
-      <button class="flex items-center gap-2 rounded-xl border border-outline-variant/20 bg-surface-container-lowest px-5 py-2.5 font-bold text-primary transition-all hover:bg-primary-container/10" @click="exportAudits">
-        <span class="material-symbols-outlined">download</span>
-        导出记录
-      </button>
-      <button class="flex items-center gap-2 rounded-xl bg-primary px-6 py-2.5 font-bold text-on-primary shadow-lg shadow-primary/20" @click="loadAudits">
-        <span class="material-symbols-outlined">refresh</span>
-        刷新
-      </button>
+      <AdminActionButton label="导出记录" icon="download" tone="outline" @click="exportAudits" />
+      <AdminActionButton label="刷新" icon="refresh" tone="primary" @click="loadAudits" />
     </template>
 
     <AdminFilterBar>
@@ -60,6 +54,7 @@ import { adminApi } from '../api/admin';
 import { ACTOR_TYPE, AUDIT_ACTION, TARGET_TYPE, formatDate, labelOf } from '../assets/labels';
 import { useExportCsv } from '../composables/useExportCsv';
 import AdminFilterBar from '../components/AdminFilterBar.vue';
+import AdminActionButton from '../components/AdminActionButton.vue';
 
 const { exportCsv } = useExportCsv();
 const router = useRouter();

@@ -1,14 +1,8 @@
 <template>
   <AdminLayout title="用户管理" subtitle="聚焦账号状态、注册分层与风险处置，保留封禁交互" breadcrumb="用户管理" search-placeholder="搜索用户 ID 或昵称...">
     <template #actions>
-      <button class="flex items-center gap-2 rounded-full bg-surface-container-lowest px-6 py-3 font-bold text-primary shadow-sm transition-all hover:bg-primary-container/10" @click="exportUsers">
-        <span class="material-symbols-outlined">download</span>
-        导出数据
-      </button>
-      <button class="flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-bold text-on-primary shadow-lg shadow-primary/20" @click="loadUsers">
-        <span class="material-symbols-outlined">refresh</span>
-        刷新
-      </button>
+      <AdminActionButton label="导出数据" icon="download" tone="outline" @click="exportUsers" />
+      <AdminActionButton label="刷新" icon="refresh" tone="primary" @click="loadUsers" />
     </template>
 
     <div class="mb-8 grid grid-cols-1 gap-6 md:grid-cols-4">
@@ -87,6 +81,7 @@ import AdminTableActions from '../components/AdminTableActions.vue';
 import AdminStatusBadge from '../components/AdminStatusBadge.vue';
 import AdminFilterBar from '../components/AdminFilterBar.vue';
 import AdminAvatar from '../components/AdminAvatar.vue';
+import AdminActionButton from '../components/AdminActionButton.vue';
 import ActionReasonModal from '../components/ActionReasonModal.vue';
 import { adminApi } from '../api/admin';
 import { OWNER_STATUS, formatDate, labelOf } from '../assets/labels';

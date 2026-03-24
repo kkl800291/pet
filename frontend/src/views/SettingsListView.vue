@@ -1,13 +1,8 @@
 <template>
   <AdminLayout title="基础配置" subtitle="按 Stitch 配置台布局拆成权限与可见性、审核模式、审计策略和同步状态四个区块" breadcrumb="基础配置" search-placeholder="搜索配置项...">
     <template #actions>
-      <button class="rounded-2xl bg-emerald-50 px-5 py-2.5 text-sm font-semibold text-emerald-800 transition-all hover:bg-emerald-100 active:scale-95" @click="resetToDefaults">
-        恢复默认
-      </button>
-      <button class="flex items-center gap-2 rounded-2xl bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-emerald-900/10 transition-all hover:brightness-110 active:scale-95" :disabled="saving" @click="saveConfig">
-        <span class="material-symbols-outlined">save</span>
-        {{ saving ? '保存中...' : '保存配置' }}
-      </button>
+      <AdminActionButton label="恢复默认" tone="neutral" @click="resetToDefaults" />
+      <AdminActionButton :label="saving ? '保存中...' : '保存配置'" icon="save" tone="primary" :disabled="saving" @click="saveConfig" />
     </template>
 
     <div class="grid grid-cols-12 gap-6">
@@ -166,6 +161,7 @@
 
 <script setup>
 import { computed, onMounted, reactive, ref } from 'vue';
+import AdminActionButton from '../components/AdminActionButton.vue';
 import AdminLayout from '../layouts/AdminLayout.vue';
 import AdminPanel from '../components/AdminPanel.vue';
 import AdminStatCard from '../components/AdminStatCard.vue';

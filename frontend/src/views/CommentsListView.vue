@@ -1,13 +1,7 @@
 <template>
   <AdminLayout title="评论管理" subtitle="查看和删除社区帖子评论，配合评论审核开关使用" breadcrumb="评论管理">
     <template #actions>
-      <button
-        class="flex items-center gap-2 rounded-xl bg-primary px-5 py-2 text-sm font-bold text-on-primary shadow-lg shadow-primary/20 transition-all active:scale-95"
-        @click="loadComments"
-      >
-        <span class="material-symbols-outlined text-lg">refresh</span>
-        刷新
-      </button>
+      <AdminActionButton label="刷新" icon="refresh" tone="primary" @click="loadComments" />
     </template>
 
     <div class="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -83,6 +77,7 @@ import AdminTableActions from '../components/AdminTableActions.vue';
 import AdminStatusBadge from '../components/AdminStatusBadge.vue';
 import AdminFilterBar from '../components/AdminFilterBar.vue';
 import AdminAvatar from '../components/AdminAvatar.vue';
+import AdminActionButton from '../components/AdminActionButton.vue';
 import CommonModal from '../components/CommonModal.vue';
 import { adminApi } from '../api/admin';
 import { formatDate } from '../assets/labels';
