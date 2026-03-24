@@ -190,17 +190,6 @@
       @update:reason="actionReason = $event"
     />
 
-    <CommonModal
-      :open="feedbackOpen"
-      :title="feedbackTitle"
-      :description="feedbackText"
-      confirm-text="知道了"
-      icon="check_circle"
-      tone="success"
-      :show-cancel="false"
-      @close="feedbackOpen = false"
-      @confirm="feedbackOpen = false"
-    />
   </AdminLayout>
 </template>
 
@@ -211,9 +200,11 @@ import AdminLayout from '../layouts/AdminLayout.vue';
 import AdminActionButton from '../components/AdminActionButton.vue';
 import AdminBackButton from '../components/AdminBackButton.vue';
 import ActionReasonModal from '../components/ActionReasonModal.vue';
-import CommonModal from '../components/CommonModal.vue';
 import { adminApi } from '../api/admin';
 import { REPORT_STATUS, TARGET_TYPE, formatDate, labelOf } from '../assets/labels';
+import { useToast } from '../composables/useToast';
+
+const { success, error: showError } = useToast();
 
 const route = useRoute();
 const router = useRouter();
@@ -221,9 +212,6 @@ const report = ref(null);
 const confirmOpen = ref(false);
 const pendingAction = ref('');
 const actionReason = ref('');
-const feedbackOpen = ref(false);
-const feedbackTitle = ref('处理完成');
-const feedbackText = ref('');
 
 const item = computed(() => report.value);
 const relatedPost = computed(() => item.value?.post || null);
@@ -333,9 +321,7 @@ async function warnOwner() {
 
 async function banTargetOwner() {
   if (!canBanTargetOwner.value) {
-    feedbackTitle.value = '无法封禁账号';
-    feedbackText.value = '当前举报未关联可封禁的用户账号。';
-    feedbackOpen.value = true;
+    showError('当前举报未关联可封禁的用户账号');
     return;
   }
   pendingAction.value = 'ban';
@@ -347,41 +333,29 @@ async function confirmReasonAction() {
   if (!item.value) return;
   const reason = actionReason.value.trim() || item.value.reason || '管理员处理';
   const action = pendingAction.value;
-  closeReasonModal();
 
-  if (action === 'remove') {
-    await adminApi.resolveReport(item.value.id, reason, 'remove_content');
-    await loadData();
-    feedbackTitle.value = '处理完成';
-    feedbackText.value = '举报单已按“下架内容”完成处理，并回写到状态流转。';
-    feedbackOpen.value = true;
-    return;
-  }
+  const actionMessages = {
+    remove: '举报已处理：内容已下架',
+    ignore: '举报已忽略',
+    warn: targetOwnerId.value ? `已对账号 ${targetOwnerId.value} 记录警告` : '已记录警告',
+    ban: `账号 ${targetOwnerId.value} 已封禁`
+  };
 
-  if (action === 'ignore') {
-    await adminApi.resolveReport(item.value.id, reason, 'ignore_report');
-    await loadData();
-    feedbackTitle.value = '举报已忽略';
-    feedbackText.value = '该举报单已标记为忽略处理。';
-    feedbackOpen.value = true;
-    return;
-  }
+  const apiActionMap = {
+    remove: 'remove_content',
+    ignore: 'ignore_report',
+    warn: 'warn_owner',
+    ban: 'ban_owner'
+  };
 
-  if (action === 'warn') {
-    await adminApi.resolveReport(item.value.id, reason, 'warn_owner');
-    await loadData();
-    feedbackTitle.value = '已记录警告';
-    feedbackText.value = targetOwnerId.value ? `已对账号 ${targetOwnerId.value} 记录警告处理。` : '已记录警告处理。';
-    feedbackOpen.value = true;
-    return;
-  }
-
-  if (action === 'ban') {
-    await adminApi.resolveReport(item.value.id, reason, 'ban_owner');
-    await loadData();
-    feedbackTitle.value = '账号已封禁';
-    feedbackText.value = `账号 ${targetOwnerId.value} 已封禁，并同步完成举报处理。`;
-    feedbackOpen.value = true;
+  if (apiActionMap[action]) {
+    try {
+      await adminApi.resolveReport(item.value.id, reason, apiActionMap[action]);
+      await loadData();
+      success(actionMessages[action] || '处理完成');
+    } catch {
+      showError('操作失败，请重试');
+    }
   }
 }
 

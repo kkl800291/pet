@@ -7,7 +7,7 @@
             <th
               v-for="column in columns"
               :key="column.key"
-              class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant"
+              class="whitespace-nowrap px-6 py-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant"
               :class="column.align === 'right' ? 'text-right' : column.align === 'center' ? 'text-center' : 'text-left'"
             >
               {{ column.label }}

@@ -18,7 +18,7 @@
       <AdminStatCard label="紧急待办" :value="urgentCount" tone="danger" />
     </div>
 
-    <div v-if="showFilters" class="mb-6 grid grid-cols-1 gap-4 rounded-[1.75rem] bg-surface-container-low p-4 lg:grid-cols-4">
+    <AdminFilterBar v-if="showFilters">
       <div>
         <label class="mb-1.5 ml-1 block text-xs font-semibold text-slate-500">处理状态</label>
         <select v-model="statusFilter" class="w-full rounded-xl border-none bg-surface-container-lowest px-4 py-3 text-sm shadow-sm">
@@ -41,12 +41,13 @@
         <label class="mb-1.5 ml-1 block text-xs font-semibold text-slate-500">搜索关键词</label>
         <input v-model.trim="query" class="w-full rounded-xl border-none bg-surface-container-lowest px-4 py-3 text-sm shadow-sm" placeholder="举报原因 / 举报人 / 目标对象" />
       </div>
-    </div>
+    </AdminFilterBar>
 
-    <AdminDataTable :columns="columns" :has-rows="Boolean(filteredReports.length)" empty-text="暂无举报数据">
+    <AdminTableSkeleton v-if="loading" :cols="8" />
+    <AdminDataTable v-else :columns="columns" :has-rows="Boolean(filteredReports.length)" empty-text="暂无举报数据">
       <tr v-for="report in filteredReports" :key="report.id" class="transition-colors hover:bg-primary/5">
-              <td class="px-8 py-5">
-                <span class="rounded-full border px-3 py-1 text-[10px] font-bold uppercase" :class="badgeClass(report)">
+              <td class="whitespace-nowrap px-8 py-5">
+                <span class="rounded-full border px-3 py-1 text-[10px] font-bold" :class="badgeClass(report)">
                   {{ reasonBadge(report) }}
                 </span>
               </td>
@@ -58,9 +59,7 @@
               </td>
               <td class="px-6 py-5">
                 <div class="flex items-center gap-3">
-                  <div class="flex h-6 w-6 items-center justify-center rounded-full bg-surface-container text-[10px] font-bold text-on-surface-variant">
-                    {{ (report.reporterOwnerId || 'R').slice(0, 1).toUpperCase() }}
-                  </div>
+                  <AdminAvatar :name="report.reporter?.name || report.reporterOwnerId" size="xs" fallback="R" />
                   <div>
                     <p class="text-sm font-medium text-on-surface">{{ report.reporter?.name || report.reporterOwnerId }}</p>
                     <p class="text-xs text-on-surface-variant">{{ report.reporterOwnerId }}</p>
@@ -73,12 +72,14 @@
                   <p class="text-xs text-on-surface-variant">{{ report.targetId }}</p>
                 </div>
               </td>
-              <td class="px-6 py-5">
+              <td class="whitespace-nowrap px-6 py-5">
                 <div class="space-y-2">
-                  <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-bold" :class="report.status === 'open' ? 'bg-error text-on-error' : 'bg-primary-container/30 text-on-primary-container'">
-                    <span class="h-1.5 w-1.5 rounded-full" :class="report.status === 'open' ? 'bg-white animate-pulse' : 'bg-primary'"></span>
-                    {{ labelOf(REPORT_STATUS, report.status) }}
-                  </span>
+                  <AdminStatusBadge
+                    :label="labelOf(REPORT_STATUS, report.status)"
+                    :tone="report.status === 'open' ? 'error' : 'neutral'"
+                    dot
+                    :pulse="report.status === 'open'"
+                  />
                   <p v-if="report.status === 'resolved' && report.actionType" class="text-xs text-on-surface-variant">
                     {{ actionTypeLabel(report) }}
                   </p>
@@ -107,11 +108,16 @@ import AdminLayout from '../layouts/AdminLayout.vue';
 import AdminDataTable from '../components/AdminDataTable.vue';
 import AdminStatCard from '../components/AdminStatCard.vue';
 import AdminTableActions from '../components/AdminTableActions.vue';
+import AdminTableSkeleton from '../components/AdminTableSkeleton.vue';
+import AdminStatusBadge from '../components/AdminStatusBadge.vue';
+import AdminFilterBar from '../components/AdminFilterBar.vue';
+import AdminAvatar from '../components/AdminAvatar.vue';
 import { adminApi } from '../api/admin';
 import { REPORT_STATUS, formatDate, labelOf } from '../assets/labels';
 
 const router = useRouter();
 const reports = ref([]);
+const loading = ref(false);
 const showFilters = ref(false);
 const statusFilter = ref('');
 const actionFilter = ref('');
@@ -139,8 +145,13 @@ const filteredReports = computed(() => reports.value.filter((report) => {
 }));
 
 async function loadReports() {
-  const data = await adminApi.reports();
-  reports.value = data.items || [];
+  loading.value = true;
+  try {
+    const data = await adminApi.reports();
+    reports.value = data.items || [];
+  } finally {
+    loading.value = false;
+  }
 }
 
 function reasonBadge(report) {

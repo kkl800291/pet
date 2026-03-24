@@ -2033,6 +2033,39 @@ app.get('/api/admin/audits/:auditId', (req, res) => {
   res.json({ audit });
 });
 
+app.get('/api/admin/comments', (req, res) => {
+  const admin = getCurrentAdmin(req);
+  if (!admin) return res.status(401).json({ error: 'unauthorized' });
+  const rows = db.prepare(`
+    SELECT c.id, c.postId, c.ownerId, c.content, c.createdAt,
+           o.name AS ownerName, o.status AS ownerStatus,
+           p.title AS postTitle, p.status AS postStatus
+    FROM comments c
+    LEFT JOIN owners o ON o.id = c.ownerId
+    LEFT JOIN posts p ON p.id = c.postId
+    ORDER BY c.createdAt DESC
+    LIMIT 300
+  `).all();
+  res.json({ items: rows });
+});
+
+app.delete('/api/admin/comments/:commentId', (req, res) => {
+  const admin = getCurrentAdmin(req);
+  if (!admin) return res.status(401).json({ error: 'unauthorized' });
+  const comment = db.prepare('SELECT * FROM comments WHERE id = ?').get(req.params.commentId);
+  if (!comment) return res.status(404).json({ error: 'not_found' });
+  db.prepare('DELETE FROM comments WHERE id = ?').run(req.params.commentId);
+  addAuditLog({
+    actorType: 'admin',
+    actorId: admin.id,
+    action: 'delete_comment',
+    targetType: 'comment',
+    targetId: req.params.commentId,
+    detail: JSON.stringify({ content: comment.content?.slice(0, 100), postId: comment.postId })
+  });
+  res.json({ ok: true });
+});
+
 app.post('/api/uploads', upload.single('file'), (req, res) => {
   if (!req.file) return res.status(400).json({ error: 'missing_file' });
   res.json({ url: `/uploads/${req.file.filename}` });

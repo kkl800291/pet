@@ -74,6 +74,8 @@
     </div>
   </header>
 
+  <ToastContainer />
+
   <main class="min-h-screen bg-background pb-12 pl-64 pt-28">
     <div class="mx-auto max-w-[1440px] px-8">
       <div class="mb-8 flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
@@ -93,6 +95,7 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router';
 import { useSessionStore } from '../stores/session';
+import ToastContainer from '../components/ToastContainer.vue';
 
 defineProps({
   title: { type: String, required: true },
@@ -102,11 +105,13 @@ defineProps({
 });
 
 const navItems = [
+  { to: '/dashboard', label: '概览', icon: 'dashboard', section: 'dashboard' },
   { to: '/review/list', label: '内容审核', icon: 'fact_check', section: 'review' },
   { to: '/reports/list', label: '举报处理', icon: 'report', section: 'reports' },
   { to: '/users/list', label: '用户管理', icon: 'group', section: 'users' },
   { to: '/pets/list', label: '宠物管理', icon: 'pets', section: 'pets' },
   { to: '/audits/list', label: '风控记录', icon: 'security', section: 'audits' },
+  { to: '/comments/list', label: '评论管理', icon: 'comment', section: 'comments' },
   { to: '/settings/list', label: '基础配置', icon: 'settings', section: 'settings' }
 ];
 

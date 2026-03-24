@@ -45,7 +45,8 @@ export const AUDIT_ACTION = {
   ban_owner: '封禁用户',
   unban_owner: '解封用户',
   resolve_report: '处理举报',
-  update_config: '修改配置'
+  update_config: '修改配置',
+  delete_comment: '删除评论'
 };
 
 export function labelOf(map, key) {

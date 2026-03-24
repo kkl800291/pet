@@ -29,5 +29,8 @@ export const adminApi = {
   patchConfig: (payload) => http.patch('/api/admin/config', payload),
 
   audits: () => http.get('/api/admin/audits'),
-  auditDetail: (auditId) => http.get(`/api/admin/audits/${auditId}`)
+  auditDetail: (auditId) => http.get(`/api/admin/audits/${auditId}`),
+
+  comments: () => http.get('/api/admin/comments'),
+  deleteComment: (commentId) => http.delete(`/api/admin/comments/${commentId}`)
 };

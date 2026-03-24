@@ -180,17 +180,6 @@
       @update:reason="actionReason = $event"
     />
 
-    <CommonModal
-      :open="feedbackOpen"
-      title="操作已完成"
-      :description="feedbackText"
-      confirm-text="知道了"
-      icon="check_circle"
-      tone="success"
-      :show-cancel="false"
-      @close="feedbackOpen = false"
-      @confirm="feedbackOpen = false"
-    />
   </AdminLayout>
 </template>
 
@@ -202,9 +191,11 @@ import AdminActionButton from '../components/AdminActionButton.vue';
 import AdminBackButton from '../components/AdminBackButton.vue';
 import AdminStatCard from '../components/AdminStatCard.vue';
 import ActionReasonModal from '../components/ActionReasonModal.vue';
-import CommonModal from '../components/CommonModal.vue';
 import { adminApi } from '../api/admin';
 import { AUDIT_ACTION, OWNER_STATUS, formatDate, labelOf } from '../assets/labels';
+import { useToast } from '../composables/useToast';
+
+const { success, error: showError } = useToast();
 
 const route = useRoute();
 const router = useRouter();
@@ -215,8 +206,6 @@ const audits = ref([]);
 const warnings = ref([]);
 const confirmOpen = ref(false);
 const actionReason = ref('');
-const feedbackOpen = ref(false);
-const feedbackText = ref('');
 
 const item = computed(() => owner.value);
 
@@ -272,16 +261,19 @@ async function toggleBan() {
   const currentName = item.value.name;
   const banned = item.value.status === 'banned';
   confirmOpen.value = false;
-  if (banned) {
-    await adminApi.unbanOwner(item.value.id, actionReason.value);
-    feedbackText.value = `用户 ${currentName} 已解封。`;
-  } else {
-    await adminApi.banOwner(item.value.id, actionReason.value);
-    feedbackText.value = `用户 ${currentName} 已封禁。`;
+  try {
+    if (banned) {
+      await adminApi.unbanOwner(item.value.id, actionReason.value);
+      success(`用户 ${currentName} 已解封`);
+    } else {
+      await adminApi.banOwner(item.value.id, actionReason.value);
+      success(`用户 ${currentName} 已封禁`);
+    }
+  } catch {
+    showError('操作失败，请重试');
   }
   actionReason.value = '';
   await loadData();
-  feedbackOpen.value = true;
 }
 
 function closeReasonModal() {

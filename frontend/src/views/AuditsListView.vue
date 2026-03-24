@@ -11,7 +11,7 @@
       </button>
     </template>
 
-    <div class="mb-6 grid grid-cols-1 gap-4 rounded-[1.75rem] bg-surface-container-low p-4 lg:grid-cols-4">
+    <AdminFilterBar>
       <div>
         <label class="mb-1.5 ml-1 block text-xs font-semibold text-slate-500">动作类型</label>
         <select v-model="actionFilter" class="w-full rounded-xl border-none bg-surface-container-lowest px-4 py-3 text-sm shadow-sm">
@@ -31,9 +31,10 @@
         <label class="mb-1.5 ml-1 block text-xs font-semibold text-slate-500">搜索关键词</label>
         <input v-model.trim="query" class="w-full rounded-xl border-none bg-surface-container-lowest px-4 py-3 text-sm shadow-sm" placeholder="动作 / 目标ID / 执行人 / 详情" />
       </div>
-    </div>
+    </AdminFilterBar>
 
-    <AdminDataTable :columns="columns" :has-rows="Boolean(filteredAudits.length)" empty-text="暂无风控记录">
+    <AdminTableSkeleton v-if="loading" :cols="6" />
+    <AdminDataTable v-else :columns="columns" :has-rows="Boolean(filteredAudits.length)" empty-text="暂无风控记录">
       <tr v-for="item in filteredAudits" :key="item.id" class="transition-colors hover:bg-primary/5">
               <td class="px-6 py-4 text-sm font-semibold">{{ labelOf(AUDIT_ACTION, item.action) }}</td>
               <td class="px-6 py-4 text-sm">{{ labelOf(TARGET_TYPE, item.targetType) }} · {{ item.targetId }}</td>
@@ -54,11 +55,16 @@ import { useRouter } from 'vue-router';
 import AdminLayout from '../layouts/AdminLayout.vue';
 import AdminDataTable from '../components/AdminDataTable.vue';
 import AdminTableActions from '../components/AdminTableActions.vue';
+import AdminTableSkeleton from '../components/AdminTableSkeleton.vue';
 import { adminApi } from '../api/admin';
 import { ACTOR_TYPE, AUDIT_ACTION, TARGET_TYPE, formatDate, labelOf } from '../assets/labels';
+import { useExportCsv } from '../composables/useExportCsv';
+import AdminFilterBar from '../components/AdminFilterBar.vue';
 
+const { exportCsv } = useExportCsv();
 const router = useRouter();
 const audits = ref([]);
+const loading = ref(false);
 const actionFilter = ref('');
 const query = ref('');
 const columns = [
@@ -77,8 +83,13 @@ const filteredAudits = computed(() => audits.value.filter((item) => {
 }));
 
 async function loadAudits() {
-  const data = await adminApi.audits();
-  audits.value = data.items || [];
+  loading.value = true;
+  try {
+    const data = await adminApi.audits();
+    audits.value = data.items || [];
+  } finally {
+    loading.value = false;
+  }
 }
 
 function exportAudits() {
@@ -92,16 +103,7 @@ function exportAudits() {
     formatDate(item.createdAt),
     item.detail || ''
   ]);
-  const csv = [headers, ...rows]
-    .map((row) => row.map((cell) => `"${String(cell ?? '').replaceAll('"', '""')}"`).join(','))
-    .join('\n');
-
-  const blob = new Blob([`\uFEFF${csv}`], { type: 'text/csv;charset=utf-8;' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = `audits-${new Date().toISOString().slice(0, 10)}.csv`;
-  link.click();
-  URL.revokeObjectURL(link.href);
+  exportCsv('audits', headers, rows);
 }
 
 function openDetail(id) {

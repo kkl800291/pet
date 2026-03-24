@@ -18,7 +18,7 @@
       <AdminStatCard label="私密档案" :value="privateCount" tone="danger" />
     </div>
 
-    <div class="mb-6 grid grid-cols-1 gap-4 rounded-[1.75rem] bg-surface-container-low p-4 lg:grid-cols-4">
+    <AdminFilterBar>
       <div>
         <label class="mb-1.5 ml-1 block text-xs font-semibold text-slate-500">可见性</label>
         <select v-model="visibilityFilter" class="w-full rounded-xl border-none bg-surface-container-lowest px-4 py-3 text-sm shadow-sm">
@@ -32,28 +32,25 @@
         <label class="mb-1.5 ml-1 block text-xs font-semibold text-slate-500">搜索关键词</label>
         <input v-model.trim="query" class="w-full rounded-xl border-none bg-surface-container-lowest px-4 py-3 text-sm shadow-sm" placeholder="宠物名 / 品种 / 主人 ID" />
       </div>
-    </div>
+    </AdminFilterBar>
 
-    <AdminDataTable :columns="columns" :has-rows="Boolean(filteredPets.length)" empty-text="暂无宠物档案">
+    <AdminTableSkeleton v-if="loading" :cols="6" />
+    <AdminDataTable v-else :columns="columns" :has-rows="Boolean(filteredPets.length)" empty-text="暂无宠物档案">
       <tr v-for="pet in filteredPets" :key="pet.id" class="group transition-colors hover:bg-surface-container-low">
               <td class="px-6 py-4 font-mono text-xs text-slate-500">{{ pet.id }}</td>
               <td class="px-6 py-4">
                 <div class="flex items-center gap-3">
-                  <div v-if="pet.avatar" class="h-10 w-10 overflow-hidden rounded-xl bg-primary-container/10">
-                    <img :src="pet.avatar" alt="Pet Avatar" class="h-full w-full object-cover" />
-                  </div>
-                  <div v-else class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-container/10 text-xs font-bold text-primary">
-                    {{ pet.name?.slice(0, 1) || 'P' }}
-                  </div>
+                  <AdminAvatar :name="pet.name" :src="pet.avatar" size="md" shape="rounded" fallback="P" />
                   <span class="font-bold text-primary">{{ pet.name }}</span>
                 </div>
               </td>
               <td class="px-6 py-4 text-on-surface-variant">{{ pet.species }} · {{ pet.breed || '未知品种' }}</td>
               <td class="px-6 py-4 text-on-surface-variant">{{ pet.ownerId }}</td>
-              <td class="px-6 py-4 text-center">
-                <span class="rounded-full px-3 py-1 text-xs font-bold" :class="pet.visibility === 'public' ? 'bg-primary-container/20 text-primary' : pet.visibility === 'followers' ? 'bg-surface-container text-on-surface-variant' : 'bg-slate-100 text-slate-500'">
-                  {{ labelOf(VISIBILITY, pet.visibility) }}
-                </span>
+              <td class="whitespace-nowrap px-6 py-4 text-center">
+                <AdminStatusBadge
+                  :label="labelOf(VISIBILITY, pet.visibility)"
+                  :tone="pet.visibility === 'public' ? 'success' : 'neutral'"
+                />
               </td>
               <td class="px-6 py-4 text-xs text-slate-400">{{ formatDate(pet.createdAt) }}</td>
               <td class="px-6 py-4 text-right">
@@ -69,13 +66,20 @@ import { computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import AdminLayout from '../layouts/AdminLayout.vue';
 import AdminDataTable from '../components/AdminDataTable.vue';
+import AdminTableSkeleton from '../components/AdminTableSkeleton.vue';
 import AdminStatCard from '../components/AdminStatCard.vue';
 import AdminTableActions from '../components/AdminTableActions.vue';
+import AdminStatusBadge from '../components/AdminStatusBadge.vue';
+import AdminFilterBar from '../components/AdminFilterBar.vue';
+import AdminAvatar from '../components/AdminAvatar.vue';
 import { adminApi } from '../api/admin';
 import { VISIBILITY, formatDate, labelOf } from '../assets/labels';
+import { useExportCsv } from '../composables/useExportCsv';
 
+const { exportCsv } = useExportCsv();
 const router = useRouter();
 const pets = ref([]);
+const loading = ref(false);
 const visibilityFilter = ref('');
 const query = ref('');
 const columns = [
@@ -99,8 +103,13 @@ const filteredPets = computed(() => pets.value.filter((pet) => {
 }));
 
 async function loadPets() {
-  const data = await adminApi.pets();
-  pets.value = data.items || [];
+  loading.value = true;
+  try {
+    const data = await adminApi.pets();
+    pets.value = data.items || [];
+  } finally {
+    loading.value = false;
+  }
 }
 
 function openDetail(id) {
@@ -122,16 +131,7 @@ function exportPets() {
     labelOf(VISIBILITY, pet.visibility),
     formatDate(pet.createdAt)
   ]);
-  const csv = [headers, ...rows]
-    .map((row) => row.map((cell) => `"${String(cell ?? '').replaceAll('"', '""')}"`).join(','))
-    .join('\n');
-
-  const blob = new Blob([`\uFEFF${csv}`], { type: 'text/csv;charset=utf-8;' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = `pets-${new Date().toISOString().slice(0, 10)}.csv`;
-  link.click();
-  URL.revokeObjectURL(link.href);
+  exportCsv('pets', headers, rows);
 }
 
 onMounted(loadPets);

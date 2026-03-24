@@ -29,7 +29,7 @@
       <AdminStatCard label="总内容量" :value="posts.length" hint="包含已审与待审内容" tone="solid" />
     </div>
 
-    <div class="mb-6 grid grid-cols-1 gap-4 rounded-[1.75rem] bg-surface-container-low p-4 lg:grid-cols-4">
+    <AdminFilterBar>
       <div>
         <label class="mb-1.5 ml-1 block text-xs font-semibold text-slate-500">内容状态</label>
         <select v-model="statusFilter" class="w-full rounded-xl border-none bg-surface-container-lowest px-4 py-3 text-sm shadow-sm">
@@ -43,9 +43,10 @@
         <label class="mb-1.5 ml-1 block text-xs font-semibold text-slate-500">搜索关键词</label>
         <input v-model.trim="query" class="w-full rounded-xl border-none bg-surface-container-lowest px-4 py-3 text-sm shadow-sm" placeholder="标题 / 正文 / 作者 / 宠物" />
       </div>
-    </div>
+    </AdminFilterBar>
 
-    <AdminDataTable :columns="columns" :has-rows="Boolean(filteredPosts.length)" empty-text="暂无审核数据">
+    <AdminTableSkeleton v-if="loading" :cols="6" />
+    <AdminDataTable v-else :columns="columns" :has-rows="Boolean(filteredPosts.length)" empty-text="暂无审核数据">
       <tr v-for="post in filteredPosts" :key="post.id" class="transition-colors hover:bg-primary/5">
               <td class="px-6 py-5">
                 <div class="flex items-center gap-4">
@@ -70,20 +71,20 @@
               </td>
               <td class="px-6 py-5">
                 <div class="flex items-center gap-3">
-                  <div class="flex h-6 w-6 items-center justify-center overflow-hidden rounded-full bg-primary-container/40 text-[10px] font-bold text-primary">
-                    {{ post.owner?.name?.slice(0, 1) || 'U' }}
-                  </div>
+                  <AdminAvatar :name="post.owner?.name" size="xs" />
                   <div class="text-sm">
                     <p class="font-semibold">{{ post.owner?.name || '-' }}</p>
                     <p class="text-xs text-on-surface-variant">{{ post.likes?.length || 0 }} 赞 · {{ post.comments?.length || 0 }} 评论</p>
                   </div>
                 </div>
               </td>
-              <td class="px-6 py-5">
-                <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-bold whitespace-nowrap" :class="statusClass(post.status)">
-                  <span class="h-1.5 w-1.5 rounded-full" :class="dotClass(post.status)"></span>
-                  {{ labelOf(POST_STATUS, post.status) }}
-                </span>
+              <td class="whitespace-nowrap px-6 py-5">
+                <AdminStatusBadge
+                  :label="labelOf(POST_STATUS, post.status)"
+                  :tone="post.status === 'pending' ? 'primary' : post.status === 'rejected' ? 'danger' : 'neutral'"
+                  :dot="post.status !== 'approved'"
+                  :pulse="post.status === 'pending'"
+                />
               </td>
               <td class="px-6 py-5 text-xs text-slate-400">{{ formatDate(post.createdAt) }}</td>
               <td class="px-6 py-5">
@@ -125,15 +126,25 @@ import { useRouter } from 'vue-router';
 import AdminLayout from '../layouts/AdminLayout.vue';
 import ActionReasonModal from '../components/ActionReasonModal.vue';
 import AdminDataTable from '../components/AdminDataTable.vue';
+import AdminTableSkeleton from '../components/AdminTableSkeleton.vue';
 import AdminStatCard from '../components/AdminStatCard.vue';
 import AdminTableActions from '../components/AdminTableActions.vue';
+import AdminStatusBadge from '../components/AdminStatusBadge.vue';
+import AdminFilterBar from '../components/AdminFilterBar.vue';
+import AdminAvatar from '../components/AdminAvatar.vue';
 import CommonModal from '../components/CommonModal.vue';
 import { adminApi } from '../api/admin';
 import { POST_STATUS, formatDate, labelOf } from '../assets/labels';
+import { useToast } from '../composables/useToast';
+import { useExportCsv } from '../composables/useExportCsv';
+
+const { success, error } = useToast();
+const { exportCsv } = useExportCsv();
 
 const router = useRouter();
 const statusFilter = ref('');
 const posts = ref([]);
+const loading = ref(false);
 const query = ref('');
 const confirmOpen = ref(false);
 const confirmAction = ref('approve');
@@ -179,24 +190,17 @@ const filteredPosts = computed(() => posts.value.filter((post) => {
 }));
 
 async function loadPosts() {
-  const data = await adminApi.posts(statusFilter.value || undefined);
-  posts.value = data.items || [];
+  loading.value = true;
+  try {
+    const data = await adminApi.posts(statusFilter.value || undefined);
+    posts.value = data.items || [];
+  } finally {
+    loading.value = false;
+  }
 }
 
 function setFilter(value) {
   statusFilter.value = value;
-}
-
-function statusClass(status) {
-  if (status === 'approved') return 'bg-slate-100 text-slate-500';
-  if (status === 'rejected') return 'bg-error/10 text-error';
-  return 'bg-primary-container/30 text-primary';
-}
-
-function dotClass(status) {
-  if (status === 'approved') return 'bg-slate-400';
-  if (status === 'rejected') return 'bg-error';
-  return 'bg-primary animate-pulse';
 }
 
 function openDetail(id) {
@@ -229,7 +233,12 @@ async function confirmApprove() {
   if (!selectedPost.value) return;
   const id = selectedPost.value.id;
   closeActionModal();
-  await adminApi.approvePost(id);
+  try {
+    await adminApi.approvePost(id);
+    success('内容已通过审核');
+  } catch {
+    error('操作失败，请重试');
+  }
   selectedPost.value = null;
   await loadPosts();
 }
@@ -238,7 +247,12 @@ async function confirmReject() {
   if (!selectedPost.value) return;
   const id = selectedPost.value.id;
   closeActionModal();
-  await adminApi.rejectPost(id, actionReason.value);
+  try {
+    await adminApi.rejectPost(id, actionReason.value);
+    success('内容已驳回');
+  } catch {
+    error('操作失败，请重试');
+  }
   selectedPost.value = null;
   await loadPosts();
 }
@@ -259,16 +273,7 @@ function exportPosts() {
     post.reviewReason || '',
     formatDate(post.createdAt)
   ]);
-  const csv = [headers, ...rows]
-    .map((row) => row.map((cell) => `"${String(cell ?? '').replaceAll('"', '""')}"`).join(','))
-    .join('\n');
-
-  const blob = new Blob([`\uFEFF${csv}`], { type: 'text/csv;charset=utf-8;' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = `review-posts-${new Date().toISOString().slice(0, 10)}.csv`;
-  link.click();
-  URL.revokeObjectURL(link.href);
+  exportCsv('review-posts', headers, rows);
 }
 
 onMounted(loadPosts);

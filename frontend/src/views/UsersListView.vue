@@ -18,7 +18,7 @@
       <AdminStatCard label="筛选结果" :value="filteredUsers.length" />
     </div>
 
-    <div class="mb-6 grid grid-cols-1 gap-4 rounded-[1.75rem] bg-surface-container-low p-4 lg:grid-cols-4">
+    <AdminFilterBar>
       <div>
         <label class="mb-1.5 ml-1 block text-xs font-semibold text-slate-500">用户状态</label>
         <select v-model="statusFilter" class="w-full rounded-xl border-none bg-surface-container-lowest px-4 py-3 text-sm shadow-sm">
@@ -31,14 +31,15 @@
         <label class="mb-1.5 ml-1 block text-xs font-semibold text-slate-500">搜索关键词</label>
         <input v-model.trim="query" class="w-full rounded-xl border-none bg-surface-container-lowest px-4 py-3 text-sm shadow-sm" placeholder="姓名 / 手机号" />
       </div>
-    </div>
+    </AdminFilterBar>
 
-    <AdminDataTable :columns="columns" :has-rows="Boolean(filteredUsers.length)" empty-text="暂无用户数据">
+    <AdminTableSkeleton v-if="loading" :cols="6" />
+    <AdminDataTable v-else :columns="columns" :has-rows="Boolean(filteredUsers.length)" empty-text="暂无用户数据">
       <tr v-for="user in filteredUsers" :key="user.id" class="transition-colors hover:bg-primary/5">
               <td class="px-8 py-5 font-mono text-sm text-slate-400">#{{ user.id.slice(-6).toUpperCase() }}</td>
               <td class="px-8 py-5">
                 <div class="flex items-center gap-3">
-                  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[#E0F7FA] text-xs font-bold text-primary">{{ user.name?.slice(0, 1) || 'U' }}</div>
+                  <AdminAvatar :name="user.name" size="md" />
                   <div>
                     <p class="font-bold text-on-surface">{{ user.name }}</p>
                     <p class="text-xs text-slate-400">{{ user.id }}</p>
@@ -46,10 +47,11 @@
                 </div>
               </td>
               <td class="px-8 py-5 text-sm font-medium text-on-surface-variant">{{ user.phone }}</td>
-              <td class="px-8 py-5">
-                <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold" :class="user.status === 'banned' ? 'bg-error/10 text-error' : 'bg-primary-container/20 text-primary'">
-                  {{ labelOf(OWNER_STATUS, user.status) }}
-                </span>
+              <td class="whitespace-nowrap px-8 py-5">
+                <AdminStatusBadge
+                  :label="labelOf(OWNER_STATUS, user.status)"
+                  :tone="user.status === 'banned' ? 'danger' : 'success'"
+                />
               </td>
               <td class="px-8 py-5 text-sm text-slate-500">{{ formatDate(user.createdAt) }}</td>
               <td class="px-8 py-5 text-right">
@@ -72,17 +74,6 @@
     @update:reason="actionReason = $event"
   />
 
-  <CommonModal
-    :open="feedbackOpen"
-    title="操作已完成"
-    :description="feedbackText"
-    confirm-text="知道了"
-    icon="check_circle"
-    tone="success"
-    :show-cancel="false"
-    @close="feedbackOpen = false"
-    @confirm="feedbackOpen = false"
-  />
 </template>
 
 <script setup>
@@ -90,12 +81,20 @@ import { computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import AdminLayout from '../layouts/AdminLayout.vue';
 import AdminDataTable from '../components/AdminDataTable.vue';
+import AdminTableSkeleton from '../components/AdminTableSkeleton.vue';
 import AdminStatCard from '../components/AdminStatCard.vue';
 import AdminTableActions from '../components/AdminTableActions.vue';
+import AdminStatusBadge from '../components/AdminStatusBadge.vue';
+import AdminFilterBar from '../components/AdminFilterBar.vue';
+import AdminAvatar from '../components/AdminAvatar.vue';
 import ActionReasonModal from '../components/ActionReasonModal.vue';
-import CommonModal from '../components/CommonModal.vue';
 import { adminApi } from '../api/admin';
 import { OWNER_STATUS, formatDate, labelOf } from '../assets/labels';
+import { useToast } from '../composables/useToast';
+import { useExportCsv } from '../composables/useExportCsv';
+
+const { success, error } = useToast();
+const { exportCsv } = useExportCsv();
 
 const router = useRouter();
 const users = ref([]);
@@ -103,8 +102,7 @@ const query = ref('');
 const statusFilter = ref('');
 const pendingUser = ref(null);
 const actionReason = ref('');
-const feedbackOpen = ref(false);
-const feedbackText = ref('');
+const loading = ref(false);
 
 const columns = [
   { key: 'id', label: '用户ID' },
@@ -125,8 +123,13 @@ const activeCount = computed(() => users.value.filter((u) => u.status === 'activ
 const bannedCount = computed(() => users.value.filter((u) => u.status === 'banned').length);
 
 async function loadUsers() {
-  const data = await adminApi.users();
-  users.value = data.items || [];
+  loading.value = true;
+  try {
+    const data = await adminApi.users();
+    users.value = data.items || [];
+  } finally {
+    loading.value = false;
+  }
 }
 
 function exportUsers() {
@@ -138,16 +141,7 @@ function exportUsers() {
     labelOf(OWNER_STATUS, user.status),
     formatDate(user.createdAt)
   ]);
-  const csv = [headers, ...rows]
-    .map((row) => row.map((cell) => `"${String(cell ?? '').replaceAll('"', '""')}"`).join(','))
-    .join('\n');
-
-  const blob = new Blob([`\uFEFF${csv}`], { type: 'text/csv;charset=utf-8;' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = `users-${new Date().toISOString().slice(0, 10)}.csv`;
-  link.click();
-  URL.revokeObjectURL(link.href);
+  exportCsv('users', headers, rows);
 }
 
 function openDetail(id) {
@@ -175,16 +169,19 @@ async function confirmToggleBan() {
   if (!pendingUser.value) return;
   const user = pendingUser.value;
   pendingUser.value = null;
-  if (user.status === 'banned') {
-    await adminApi.unbanOwner(user.id, actionReason.value);
-    feedbackText.value = `用户 ${user.name} 已解封。`;
-  } else {
-    await adminApi.banOwner(user.id, actionReason.value);
-    feedbackText.value = `用户 ${user.name} 已封禁。`;
+  try {
+    if (user.status === 'banned') {
+      await adminApi.unbanOwner(user.id, actionReason.value);
+      success(`用户 ${user.name} 已解封`);
+    } else {
+      await adminApi.banOwner(user.id, actionReason.value);
+      success(`用户 ${user.name} 已封禁`);
+    }
+  } catch {
+    error('操作失败，请重试');
   }
   actionReason.value = '';
   await loadUsers();
-  feedbackOpen.value = true;
 }
 
 function closeReasonModal() {

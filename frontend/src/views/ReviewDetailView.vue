@@ -141,17 +141,6 @@
       @update:reason="confirmReason = $event"
     />
 
-    <CommonModal
-      :open="feedbackOpen"
-      :title="feedbackTitle"
-      :description="feedbackText"
-      confirm-text="知道了"
-      icon="check_circle"
-      tone="success"
-      :show-cancel="false"
-      @close="feedbackOpen = false"
-      @confirm="feedbackOpen = false"
-    />
   </AdminLayout>
 </template>
 
@@ -162,9 +151,11 @@ import AdminLayout from '../layouts/AdminLayout.vue';
 import AdminActionButton from '../components/AdminActionButton.vue';
 import ActionReasonModal from '../components/ActionReasonModal.vue';
 import AdminBackButton from '../components/AdminBackButton.vue';
-import CommonModal from '../components/CommonModal.vue';
 import { adminApi } from '../api/admin';
 import { POST_STATUS, formatDate, labelOf } from '../assets/labels';
+import { useToast } from '../composables/useToast';
+
+const { success, error: showError } = useToast();
 
 const route = useRoute();
 const router = useRouter();
@@ -172,9 +163,6 @@ const post = ref(null);
 const confirmOpen = ref(false);
 const confirmAction = ref('approve');
 const confirmReason = ref('');
-const feedbackOpen = ref(false);
-const feedbackTitle = ref('');
-const feedbackText = ref('');
 
 const rejectReasons = ['垃圾营销 (Spam)', '语言不当 (Language)', '侵犯隐私 (Privacy)'];
 
@@ -245,11 +233,13 @@ async function confirmApprove() {
   if (!item.value) return;
   const currentTitle = item.value.title;
   confirmOpen.value = false;
-  await adminApi.approvePost(item.value.id);
-  await loadData();
-  feedbackTitle.value = '审核已通过';
-  feedbackText.value = `内容《${currentTitle}》已通过。`;
-  feedbackOpen.value = true;
+  try {
+    await adminApi.approvePost(item.value.id);
+    await loadData();
+    success(`内容《${currentTitle}》已通过`);
+  } catch {
+    showError('操作失败，请重试');
+  }
 }
 
 function reject() {
@@ -271,11 +261,13 @@ async function confirmReject() {
   const currentTitle = item.value.title;
   const currentReason = confirmReason.value;
   closeReasonModal();
-  await adminApi.rejectPost(item.value.id, currentReason);
-  await loadData();
-  feedbackTitle.value = '内容已驳回';
-  feedbackText.value = currentReason ? `内容《${currentTitle}》已驳回，原因：${currentReason}` : `内容《${currentTitle}》已驳回。`;
-  feedbackOpen.value = true;
+  try {
+    await adminApi.rejectPost(item.value.id, currentReason);
+    await loadData();
+    success(`内容《${currentTitle}》已驳回`);
+  } catch {
+    showError('操作失败，请重试');
+  }
   confirmReason.value = '';
 }
 
@@ -290,11 +282,13 @@ async function confirmDelete() {
   if (!item.value) return;
   const currentTitle = item.value.title;
   closeReasonModal();
-  await adminApi.deletePost(item.value.id);
-  post.value = null;
-  feedbackTitle.value = '内容已删除';
-  feedbackText.value = `内容《${currentTitle}》已从系统中删除。`;
-  feedbackOpen.value = true;
+  try {
+    await adminApi.deletePost(item.value.id);
+    post.value = null;
+    success(`内容《${currentTitle}》已删除`);
+  } catch {
+    showError('操作失败，请重试');
+  }
 }
 
 function closeReasonModal() {

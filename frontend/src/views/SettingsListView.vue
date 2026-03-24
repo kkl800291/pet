@@ -170,6 +170,9 @@ import AdminLayout from '../layouts/AdminLayout.vue';
 import AdminPanel from '../components/AdminPanel.vue';
 import AdminStatCard from '../components/AdminStatCard.vue';
 import { adminApi } from '../api/admin';
+import { useToast } from '../composables/useToast';
+
+const { success, error } = useToast();
 
 const defaults = {
   defaultPostVisibility: 'public',
@@ -216,6 +219,9 @@ async function saveConfig() {
     Object.assign(form, defaults, data.settings || {});
     loadedSnapshot.value = JSON.stringify(form);
     lastLoadedAt.value = new Date().toLocaleString('zh-CN', { hour12: false });
+    success('配置已保存');
+  } catch {
+    error('保存失败，请重试');
   } finally {
     saving.value = false;
   }

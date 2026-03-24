@@ -2,13 +2,14 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { useSessionStore } from '../stores/session';
 
 const routes = [
-  { path: '/', redirect: '/review/list' },
-  { path: '/dashboard', redirect: '/review/list' },
+  { path: '/', redirect: '/dashboard' },
+  { path: '/dashboard', component: () => import('../views/DashboardView.vue'), meta: { requiresAuth: true } },
   { path: '/review', redirect: '/review/list' },
   { path: '/reports', redirect: '/reports/list' },
   { path: '/users', redirect: '/users/list' },
   { path: '/pets', redirect: '/pets/list' },
   { path: '/audits', redirect: '/audits/list' },
+  { path: '/comments', redirect: '/comments/list' },
   { path: '/settings', redirect: '/settings/list' },
   { path: '/login', component: () => import('../views/LoginView.vue'), meta: { guestOnly: true } },
 
@@ -26,6 +27,8 @@ const routes = [
 
   { path: '/audits/list', component: () => import('../views/AuditsListView.vue'), meta: { requiresAuth: true } },
   { path: '/audits/detail', component: () => import('../views/AuditsDetailView.vue'), meta: { requiresAuth: true } },
+
+  { path: '/comments/list', component: () => import('../views/CommentsListView.vue'), meta: { requiresAuth: true } },
 
   { path: '/settings/list', component: () => import('../views/SettingsListView.vue'), meta: { requiresAuth: true } },
   { path: '/modal/style', component: () => import('../views/ModalStyleView.vue'), meta: { requiresAuth: true } },
