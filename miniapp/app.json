@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/pet/create",
+    "pages/feed/feed",
+    "pages/post/new",
+    "pages/messages/messages",
+    "pages/settings/settings"
+  ],
+  "window": {
+    "navigationBarTitleText": "Pet Loop",
+    "navigationBarBackgroundColor": "#F4EFE7",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F4EFE7"
+  }
+}
+

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>举报处理详情 - PetAdmin 3.0</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "background": "#f5f7f9",
+                        "tertiary": "#00647c",
+                        "surface": "#f5f7f9",
+                        "secondary-fixed-dim": "#2dedd6",
+                        "on-primary": "#c5ffe9",
+                        "inverse-on-surface": "#9a9d9f",
+                        "secondary-container": "#47fce4",
+                        "surface-container": "#e5e9eb",
+                        "secondary": "#00675c",
+                        "on-surface": "#2c2f31",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#004051",
+                        "on-primary-fixed-variant": "#00644f",
+                        "surface-container-high": "#dfe3e6",
+                        "on-tertiary": "#e2f6ff",
+                        "surface-variant": "#d9dde0",
+                        "primary-fixed-dim": "#56e6bf",
+                        "on-primary-container": "#005947",
+                        "inverse-primary": "#70fdd5",
+                        "secondary-fixed": "#47fce4",
+                        "primary-fixed": "#67f4cd",
+                        "inverse-surface": "#0b0f10",
+                        "surface-tint": "#006853",
+                        "on-secondary-fixed": "#004840",
+                        "on-tertiary-fixed": "#002935",
+                        "on-secondary": "#c0fff3",
+                        "primary": "#006853",
+                        "error": "#b31b25",
+                        "on-secondary-fixed-variant": "#00675c",
+                        "error-dim": "#9f0519",
+                        "tertiary-fixed": "#00cefe",
+                        "tertiary-container": "#00cefe",
+                        "outline": "#747779",
+                        "on-error-container": "#570008",
+                        "on-error": "#ffefee",
+                        "on-secondary-container": "#005c52",
+                        "surface-bright": "#f5f7f9",
+                        "surface-container-highest": "#d9dde0",
+                        "on-tertiary-fixed-variant": "#004a5d",
+                        "primary-container": "#67f4cd",
+                        "on-background": "#2c2f31",
+                        "tertiary-dim": "#00576d",
+                        "on-surface-variant": "#595c5e",
+                        "surface-dim": "#d0d5d8",
+                        "surface-container-low": "#eef1f3",
+                        "on-primary-fixed": "#004536",
+                        "primary-dim": "#005b48",
+                        "outline-variant": "#abadaf",
+                        "secondary-dim": "#005a50",
+                        "error-container": "#fb5151",
+                        "tertiary-fixed-dim": "#00c0ec"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "1rem", "2xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', 'PingFang SC', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-effect { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- Sidebar Navigation -->
+<aside class="w-72 h-screen fixed left-0 top-0 bg-slate-50 dark:bg-slate-900 flex flex-col gap-2 py-6 font-['Plus_Jakarta_Sans'] antialiased">
+<div class="px-8 mb-8">
+<h1 class="text-xl font-bold text-emerald-900 dark:text-emerald-50">PetAdmin 3.0</h1>
+<p class="text-[10px] text-slate-400 tracking-widest mt-1">薄荷鲜氧专业主义</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-emerald-700 transition-colors mx-2 hover:bg-emerald-50 rounded-2xl" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">概览</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-emerald-900 font-semibold bg-emerald-100/50 rounded-2xl mx-2" href="#">
+<span class="material-symbols-outlined">report</span>
+<span class="text-sm font-medium">举报告理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-emerald-700 transition-colors mx-2 hover:bg-emerald-50 rounded-2xl" href="#">
+<span class="material-symbols-outlined">fact_check</span>
+<span class="text-sm font-medium">内容审核</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-emerald-700 transition-colors mx-2 hover:bg-emerald-50 rounded-2xl" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-sm font-medium">用户管理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-emerald-700 transition-colors mx-2 hover:bg-emerald-50 rounded-2xl" href="#">
+<span class="material-symbols-outlined">pets</span>
+<span class="text-sm font-medium">宠物管理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-emerald-700 transition-colors mx-2 hover:bg-emerald-50 rounded-2xl" href="#">
+<span class="material-symbols-outlined">gpp_bad</span>
+<span class="text-sm font-medium">风控记录</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-emerald-700 transition-colors mx-2 hover:bg-emerald-50 rounded-2xl mt-auto" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">基础配置</span>
+</a>
+</nav>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 right-0 w-[calc(100%-18rem)] h-16 z-40 bg-white/80 backdrop-blur-xl border-b border-emerald-50 flex justify-between items-center px-8 shadow-sm shadow-emerald-900/5">
+<div class="flex items-center gap-4">
+<button class="hover:bg-emerald-50 rounded-full p-2 transition-all">
+<span class="material-symbols-outlined text-slate-500">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 font-label">TICKET ID</span>
+<span class="text-sm font-bold text-emerald-800">REP-20240523-0892</span>
+</div>
+<span class="ml-4 px-3 py-1 bg-error-container text-on-error font-medium text-xs rounded-full whitespace-nowrap">紧急处理</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-slate-400 text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48" placeholder="搜索工单..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="hover:bg-emerald-50 rounded-full p-2 transition-all relative">
+<span class="material-symbols-outlined text-slate-500">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="h-8 w-px bg-slate-200 mx-2"></div>
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Administrator Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFaONA5IB8Ps8-dm0I3xbU15C18228VDmJRi354weTiiOhXIPLmL4-UN7jgaeoSDfSwwOolUruCEQDyIw29TAo5KtLWM_S1U6IE71lBfJ3uM5XJJ2J027ov8fBq9IhDLLmBxUo9lcyIrU8fJWimuep67GYGDonUD6eIyNNWuXtYkZpJWjqH-UQH8D7B8EIap941qmcGhibQdhlVH4byofMEKZOio0QtSsbDNmHi2o-TqRsJ3fWjNEV7SdQzAMlk-pG8Lgf8PRx4ilF"/>
+<span class="text-sm font-semibold text-slate-700">Admin. Chen</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-72 pt-24 pb-12 px-8 min-h-screen">
+<div class="max-w-7xl mx-auto space-y-6">
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Left Column: Report & Content (Main Area) -->
+<div class="col-span-8 space-y-6">
+<!-- Content Preview Card -->
+<section class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-transparent">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-lg font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">visibility</span>
+                                被举报内容预览
+                            </h2>
+<span class="text-xs text-slate-400">发布于 2024-05-23 14:20:11</span>
+</div>
+<div class="bg-surface rounded-xl p-5 border border-surface-container">
+<div class="flex items-center gap-3 mb-4">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="User profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7NnE1fpKZjjLJ-iCxsl8Ol-CNmGvddctR1SqFp8IevfGwpkLHMrW7x0WzJaP6t7Cn8N4_-BqjTBZtOjj71wdP88LCzV_4N0qY2_1PpX5Bf13Gw6UjIotiwkvErmmOk9FewdDXcQLa8gYMR2jLEYl54OrcO0KHW81lWTjo2pE4xrCqt0FdU-nF72e-VUjJIIFxuljFvYMIqpe0iWcTznMSouw6anp9DXGrPbNUuTxfSPNF-OX0tixNSqCrQ4mLi5PDvBWzjK97rWbZ"/>
+<div>
+<p class="text-sm font-bold">萌宠博主_大福</p>
+<p class="text-xs text-slate-400">UID: 8829102 · IP: 浙江</p>
+</div>
+</div>
+<p class="text-on-surface leading-relaxed mb-4">
+                                大家快来看看这个训练营！[链接] 他们家对待宠物非常暴力，我亲眼看见他们殴打哈士奇。不仅如此，收费还极其不透明。避雷避雷！#宠物训练 #避雷 
+                            </p>
+<div class="grid grid-cols-3 gap-3">
+<img class="aspect-square rounded-xl object-cover hover:opacity-90 transition-opacity cursor-pointer" data-alt="Reported content image 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQvdmBj1eVDRx3fH7cA70vxDX3l7q2pmdYcLyBcxEvnfUwbtXbZvPfENiOJdGMF-fT8D3qzzVNHbakV2wnIKjCdzC6u3B-lvufX1WhfnXmheNuy-5n24NOvRok8_nZRrNWnN9RRAF4ebwJoSUFtTKkpZAndrvwGm3v9vJ4-aic3xfYTkY8Q23kPYKej9rOqsmATaZz7cn-gpm1h2tgLlIsfx-xyK3p0sXGpAidcOBL7ZhV_lzNvDur5cwHVGJQNUDgSUBpjLHiMdOq"/>
+<img class="aspect-square rounded-xl object-cover hover:opacity-90 transition-opacity cursor-pointer" data-alt="Reported content image 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYoB1Y_DJEfsqqDxbThTc4AjwBWUFGirhMk1Uv3nLf-mrwJZ6CgIpJamsb2qU7fMiQm1GJX_WQe7DRag4w8JNurUDuOv9kAXPc7xNHqtL1XKvyUazHKiKMU87iPyun9yoS99h_r22dRCUfiozmCrT72gmLv6Hm5ycHYhXY8fYpYkz1A-BHjw93SFdXKCuNNMvoxfHnXW1sCaB6DbCyQ1XpbPUOrJw7n-wAK8ln7gYnMqk8Fv3xJFalpELtKgjXPuOSBs36ZykkcJkG"/>
+<div class="relative group cursor-pointer">
+<img class="aspect-square rounded-xl object-cover opacity-60" data-alt="Reported content image 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo9MtbyvsAw6UL0Qx7SEEo8KQmBhfeGoHgPTTUhnm-E4cm5DFCz9hsWx0s-0kr0PUzAYRfgehBnUGd2Ssc97fG0t7hqlAPs67xaz8bPzjcoGY4VpjBw1LziPviXwbnxZRMCObw3EWE7BxTGa53iZJ0Z1ySgl2l9xeK_IqY_ywogiTRynEbWqFKdR_KmnNz2HivBMu-dr4OcsReehkDcMoPVHVVle8CWmCKRiiFAvi0sW2cv_G0DIJCzG5dLhrv9ToM87-NHkNb7b9c"/>
+<div class="absolute inset-0 flex items-center justify-center text-white font-bold text-lg">+3</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Evidence List -->
+<section class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm">
+<h2 class="text-lg font-bold text-primary flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined">fact_check</span>
+                            举报人证据
+                        </h2>
+<div class="grid grid-cols-4 gap-4">
+<div class="relative group">
+<img class="w-full aspect-[3/4] rounded-xl object-cover border border-slate-100" data-alt="Evidence screenshot 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJb90H-eskQkGyiMseI9a6qrW5_V0iQlIYQps5nDo4cHmvqxjcuBni44ZySRF743FSETdRXmopqJ0JYj0kDz8Xxv-w7G67fF1EmVhmi5VADzF_y4FPDxmjtvgIygqoBNamMse7ma7ZWN-wHEKY8G0SZYEGE0rXAmiYUJQl3OrwrsGK1yzuH-_rvhtba2aU3boCTvnC8FfoEVsq2Y4B0O2e9J5YxUiv4vZlWZCmVfYxNYTimYHBZtLU_DWSZ_NTSuLCAVmgCMBmQAVS"/>
+<div class="absolute bottom-2 left-2 right-2 glass-effect bg-white/20 px-2 py-1 rounded-lg text-[10px] text-white text-center opacity-0 group-hover:opacity-100 transition-opacity">聊天截图.jpg</div>
+</div>
+<div class="relative group">
+<img class="w-full aspect-[3/4] rounded-xl object-cover border border-slate-100" data-alt="Evidence screenshot 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPF99BK1n6mqFbjah9VopB-tVnv-K29MMczTaJ5aEYEcC0etfwAQtxSUOMdkDPgFU7fvr9KWGaFwyRdPVw5RdPCQ_PywmZG6xGrKsKCdd5jKHmJxf4W581YV5PifSWcirjhHbYi726saleQ-6y-VSc93lkw5KiOSTIYZf1RxHEu8P7PPiNpG4GoBU5h8tRENfQpRqM07WQt_5VnMRzKIUxRpi9EKZgFiLuxKA9W4xsV4AtN3Pfn0zyT30z0M7Ezh4UeotXJAX5w3mk"/>
+<div class="absolute bottom-2 left-2 right-2 glass-effect bg-white/20 px-2 py-1 rounded-lg text-[10px] text-white text-center opacity-0 group-hover:opacity-100 transition-opacity">支付凭证.png</div>
+</div>
+<div class="bg-slate-50 border-2 border-dashed border-slate-200 rounded-xl flex items-center justify-center flex-col text-slate-400 gap-1 aspect-[3/4]">
+<span class="material-symbols-outlined text-3xl">add</span>
+<span class="text-xs">添加备注证据</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Info & AI (Sidebar Area) -->
+<div class="col-span-4 space-y-6">
+<!-- Report Details Card -->
+<section class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-emerald-50/50">
+<h2 class="text-md font-bold text-slate-800 mb-4">举报详情</h2>
+<div class="space-y-4">
+<div class="flex justify-between">
+<span class="text-sm text-slate-400">举报类型</span>
+<span class="text-sm font-semibold text-emerald-800">恶意营销/商业欺诈</span>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-sm text-slate-400">描述描述</span>
+<div class="bg-surface p-3 rounded-xl text-sm leading-relaxed text-slate-600">
+                                    该用户在多个评论区发布不实广告，诱导用户通过外部链接购买劣质宠粮，疑似洗稿内容。
+                                </div>
+</div>
+<div class="pt-2 border-t border-slate-50 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 text-xs font-bold">L</div>
+<span class="text-xs font-medium">LuckyStar_99</span>
+</div>
+<span class="text-[10px] text-slate-400">2024-05-23 15:01</span>
+</div>
+</div>
+</section>
+<!-- AI Smart Audit Card -->
+<section class="bg-primary-container/10 border border-primary-container rounded-2xl p-6 shadow-sm relative overflow-hidden">
+<div class="absolute -right-4 -top-4 opacity-10">
+<span class="material-symbols-outlined text-8xl text-primary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<h2 class="text-md font-bold text-primary flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                            AI 智能研判
+                        </h2>
+<div class="flex flex-col items-center mb-6">
+<div class="relative w-32 h-32 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90">
+<circle class="text-emerald-100" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-emerald-500" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-dasharray="364.4" stroke-dashoffset="54.6" stroke-width="8"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="text-3xl font-extrabold text-emerald-900">85</span>
+<span class="text-[10px] text-emerald-700 uppercase tracking-tighter">Risk Score</span>
+</div>
+</div>
+<p class="mt-4 text-sm font-bold text-emerald-900">高风险违规</p>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-3 bg-white/60 p-3 rounded-xl">
+<span class="material-symbols-outlined text-error text-lg">dangerous</span>
+<div class="flex-1">
+<p class="text-[10px] text-slate-400">命中关键词</p>
+<p class="text-xs font-bold text-error">"避雷"、"殴打"、"收费不透明"</p>
+</div>
+</div>
+<div class="flex items-center gap-3 bg-white/60 p-3 rounded-xl">
+<span class="material-symbols-outlined text-primary text-lg">history</span>
+<div class="flex-1">
+<p class="text-[10px] text-slate-400">关联记录分析</p>
+<p class="text-xs font-medium">该账号近30天内有 2 次类似被举报记录</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Global Action Bar (Sticky Footer Style but within container) -->
+<footer class="bg-surface-container-lowest rounded-2xl p-6 shadow-xl shadow-emerald-900/5 flex items-center justify-between border-t-4 border-primary">
+<div class="flex flex-col">
+<span class="text-xs text-slate-400">审核建议</span>
+<span class="text-sm font-semibold text-primary">建议“屏蔽内容”并“警告用户”</span>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 rounded-full border border-slate-200 text-slate-600 font-medium text-sm hover:bg-slate-50 transition-all">
+                        忽略举报
+                    </button>
+<button class="px-6 py-2.5 rounded-full bg-emerald-50 text-emerald-700 font-medium text-sm hover:bg-emerald-100 transition-all">
+                        警告用户
+                    </button>
+<button class="px-6 py-2.5 rounded-full bg-emerald-100 text-emerald-900 font-bold text-sm hover:bg-emerald-200 transition-all">
+                        下架内容
+                    </button>
+<button class="px-8 py-2.5 rounded-full bg-primary text-on-primary font-bold text-sm shadow-lg shadow-emerald-900/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                        封禁账号
+                    </button>
+</div>
+</footer>
+</div>
+</main>
+<!-- Floating Action for Quick Note (Contextual FAB) -->
+<div class="fixed bottom-8 right-8">
+<button class="w-14 h-14 bg-emerald-800 text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:bg-emerald-700 transition-all group">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform">edit_note</span>
+</button>
+</div>
+</body></html>

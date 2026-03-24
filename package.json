@@ -1,0 +1,28 @@
+{
+  "name": "pet-community-mvp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "dev:backend": "node backend/server.mjs",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.mjs",
+    "start:backend": "NODE_ENV=production node backend/server.mjs"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.8.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.3.1",
+    "helmet": "^8.1.0",
+    "multer": "^2.1.1",
+    "next": "15.1.6",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "ws": "8.18.0"
+  }
+}

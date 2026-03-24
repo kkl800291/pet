@@ -1,0 +1,10 @@
+<view class="page">
+  <view class="hero">
+    <text class="title">Pet Loop</text>
+    <text class="subtitle">宠物社区小程序骨架</text>
+  </view>
+  <view class="card">
+    <text>这个目录是小程序起点，后续会补登录、建档、日志、广场和消息页。</text>
+  </view>
+</view>
+

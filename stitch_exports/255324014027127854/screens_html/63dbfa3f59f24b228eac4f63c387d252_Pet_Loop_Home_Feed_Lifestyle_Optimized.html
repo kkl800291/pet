@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Be Vietnam Pro', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-low": "#f6f0e7",
+                        "inverse-surface": "#100e0a",
+                        "background": "#fcf6ee",
+                        "secondary-container": "#ffc787",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#5e5b55",
+                        "inverse-on-surface": "#a19c95",
+                        "primary": "#8b4b00",
+                        "on-tertiary-fixed": "#473900",
+                        "on-surface": "#312e29",
+                        "on-tertiary-fixed-variant": "#685400",
+                        "surface-container-high": "#e8e2d8",
+                        "surface-dim": "#dad4c9",
+                        "on-tertiary": "#fff2d1",
+                        "surface-variant": "#e2dcd2",
+                        "primary-fixed-dim": "#e3882d",
+                        "tertiary": "#6e5a00",
+                        "secondary-dim": "#724600",
+                        "inverse-primary": "#f3953a",
+                        "on-secondary-fixed": "#4c2d00",
+                        "secondary-fixed-dim": "#ffb557",
+                        "surface-container-highest": "#e2dcd2",
+                        "surface-tint": "#8b4b00",
+                        "on-error-container": "#520c00",
+                        "on-background": "#312e29",
+                        "on-secondary-container": "#673e00",
+                        "primary-fixed": "#f3953a",
+                        "secondary": "#825000",
+                        "surface-container": "#ede7de",
+                        "tertiary-fixed": "#ffd73e",
+                        "tertiary-dim": "#604e00",
+                        "on-tertiary-container": "#5d4b00",
+                        "on-error": "#ffefec",
+                        "on-secondary": "#fff0e3",
+                        "on-secondary-fixed-variant": "#734700",
+                        "secondary-fixed": "#ffc787",
+                        "primary-container": "#f3953a",
+                        "on-primary-fixed-variant": "#532b00",
+                        "tertiary-fixed-dim": "#f0c92f",
+                        "error": "#b02500",
+                        "on-primary-container": "#462300",
+                        "error-container": "#f95630",
+                        "on-primary": "#fff0e6",
+                        "outline-variant": "#b1aca5",
+                        "outline": "#7a7670",
+                        "primary-dim": "#7a4100",
+                        "on-primary-fixed": "#1e0c00",
+                        "tertiary-container": "#ffd73e",
+                        "surface": "#fcf6ee",
+                        "error-dim": "#b92902",
+                        "surface-bright": "#fcf6ee"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Be Vietnam Pro"],
+                        "label": ["Be Vietnam Pro"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { min-height: max(884px, 100dvh); }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#fcf6ee]/80 dark:bg-orange-950/80 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden ring-2 ring-primary-container/20">
+<img alt="User pet avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDYaLS5-dVttbGdqJkOQfA5f-7Ww9hBdFii5_GmmC5IpF2quxx5ujbt52u-B1fLR0DRbDCwtirkw7JWuPDXsfdbjpsaUzmlgYBRh-DgXs-91VmLvASkspTS-J3XKh9eZKIwMfuM77o1pX8t22AoRkh3zhk-nYbrOLxQueVaxe_GvOKWg6wC6gmyt_w38O5hfl8WqIJDOcQgXc-3TglHgRZU4i8Pyjqv_SOTLk8qvXuXU01LiQlAt34V9g7TLUTWdW6yJHSOjdULQ"/>
+</div>
+<div class="flex flex-col">
+<span class="text-[#8b4b00] dark:text-[#f3953a] font-['Plus_Jakarta_Sans'] font-extrabold text-xl leading-none">Pet Loop</span>
+<span class="text-[10px] text-on-surface-variant font-medium mt-0.5">早安，铲屎官！</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-[#e8e2d8]/50 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[#8b4b00]">search</span>
+</button>
+<div class="relative">
+<button class="p-2 rounded-full hover:bg-[#e8e2d8]/50 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[#8b4b00]">notifications</span>
+</button>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-background"></span>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<main class="pt-24 px-4">
+<!-- Tab Selector -->
+<div class="flex items-center gap-8 mb-6 px-2">
+<button class="relative py-2 text-lg font-bold text-[#8b4b00] border-b-2 border-[#8b4b00]">
+                推荐
+            </button>
+<button class="py-2 text-lg font-medium text-[#5e5b55] hover:text-[#8b4b00] transition-colors">
+                关注
+            </button>
+</div>
+<!-- Feed List -->
+<div class="grid grid-cols-1 gap-6">
+<!-- Card 1: Golden Retriever Sunbathing -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm">
+<div class="relative aspect-[4/5] w-full">
+<img alt="Golden Retriever sunbathing on balcony" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWviinHKvVC5KfbT5eGOywhwXIkyjLRRGxEgKqcmL9FkqDjIOuikaep0y85aVdkAhW3YanFELv4KE2XS1LSvvHmJaDP-bzbL8XEPsjLWV6zRUzI5Xk2Hsb2SRJAwLlLK3Zu98Ci8hNVPrj9tGYm8EsYV4-S4EB_Z_Tb2pSAmatf1W_b6_oWcZHNU5_bcv6NiQ8f4yAtlLkl_l76jNkQ8bQzfXFOEeFtiDzPQwZVhz5ToBtL2QtMlJesjwVIT_yvBCKl4N4l7GpjQ"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-white/70 backdrop-blur-md rounded-full text-xs font-semibold text-primary">金毛犬</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<img alt="豆腐" class="w-8 h-8 rounded-full border border-surface-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqZrbIvJSLrZYQdTNpmU_A2dx5vsNmONTPf9CJtTyluuLQDaO57VhKbNFGHXSCQnrMIAjTKU6Lvmjm9U2PmCKI4BN_WhJ4LmEW2onezzW54am6dEcqGtimjIAuFgsP9f0ItUCavmOxHGIccVREsv0dvesHODgtP1fwhzp7aTNqx2Z3uq3X9iuy3WOIBL31hXT75ioXK-9PoWP4ieiuwZr6WCNvOWdFX0YKCcwIQoS_nmAAgJab14pY4DFEK8oN5KKTOnkV_SYEHA"/>
+<span class="font-bold text-on-surface">豆腐</span>
+</div>
+<span class="text-xs text-on-surface-variant">10分钟前</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface mb-1">今日份阳光日光浴 ☀️</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-4">看着他在阳台睡觉的样子真的好治愈，阳光洒在毛发上金灿灿的。</p>
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-xl">favorite</span>
+<span class="text-xs font-medium">256</span>
+</button>
+<button class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-xl">chat_bubble</span>
+<span class="text-xs font-medium">32</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2: Ragdoll Cat After Bath -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm">
+<div class="relative aspect-square w-full">
+<img alt="Ragdoll cat with slightly damp fur after bath" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi3M0JPiG75ceUyiAYZO39O-3W3w93pgymKuW3qYsTTafTk2qwhY0tgsJ7nAW19rVLrWVn7brejS17mYG7wZHIkQaV9mktf5kUa5Qx-D-nZlZPEP-WzMCf-hRJPJZKOP0MV3asuvVGozxEXw8KDk263Rtm6lVYHEs0Hq6avO8yv_bJgnbiLb00gD_SCBvuyLWfamh41PVqTLCftm0H6_inxsfJKsROf4PPmSQhtG1B6Sw-ww4FtjZNHBSFvsaVK82ExrD7nD3nQg"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-white/70 backdrop-blur-md rounded-full text-xs font-semibold text-primary">布偶猫</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<img alt="妮可" class="w-8 h-8 rounded-full border border-surface-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEVK6hETZ6hyG28kfICmW3EVgTml3T9DXn-yhmf9F_flYmLS7GLvAk_NTIzmxCBW33x3AcnIBG7nesnTqMCq0JQBMAmjoX0SZb8a2yxiu_zHC2dpgnRZIQ7BPk5kKaEC03zfht5_FUdWE7RIYKGHF4neVHC3TGx24PK6XjDkkYGhoY0yAfnMeTPrmf8eiRPjQ8cwUKPS1UbVzdE3MP4uEgbgyOB4Z84l-mhJvJDlz0y_FtdKTDYgrGJeTEsuaC2QfiUUjExITECA"/>
+<span class="font-bold text-on-surface">妮可</span>
+</div>
+<span class="text-xs text-on-surface-variant">25分钟前</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface mb-1">洗完澡变身香香公主 🐱✨</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-4">终于洗完澡了，毛发蓬松又干净，香气快要透过屏幕啦！</p>
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-1.5 text-error">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-xs font-medium">412</span>
+</button>
+<button class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-xl">chat_bubble</span>
+<span class="text-xs font-medium">58</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3: Samoyed New Food -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm">
+<div class="relative aspect-video w-full">
+<img alt="Excited Samoyed with pet bowl" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb92CC1WWPDIh-L6J559F9dqrjDAaNPLgm-ZhcO4_oicJ1X02MHtJAI9idSCY_-FHHONDF9vGEeT8Ll3cWhK-su7T1ieCUXrQGuSbCZ0bjNk2Rj6d6JRpuQMpwGLTF8WsRHr1000D3Rvr691qIY6w7sCwbWB8IJ3GF-7PME-KlB2cx2skt5iMaIhXK7gmD7SNrt_en-iiifDFAzAxkyTgbVbTW4MSzx4BHZ1cvGaM-OTSn3DLbga3PD1Wm6WFkhPiesMtD-t7GmQ"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-white/70 backdrop-blur-md rounded-full text-xs font-semibold text-primary">萨摩耶</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<img alt="球球" class="w-8 h-8 rounded-full border border-surface-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsZMpspcf73sMKFWd9_vPlrkOnmOj9Kb600UKW0MY-TedSNSuoMHHQaIR922285B_PH5ap_G8_jDBlk2V3bS-s_kZKw2N3xN0K4LX6JHsirjl-nTjEdgvKIYMWOgzh4zHw748pVIZ03Ls-75ToIPvSYrXityBGE9-orGM5-UWdSqR9je5DxtBuvD8e_R_PslvYWNDtVoiI5qdSh7yCFPKhMSyzJcXnKYV5tLv5qx7cEWA8rQiyJMPANUxzNKtQuoZ2fxY0pgc7Rw"/>
+<span class="font-bold text-on-surface">球球</span>
+</div>
+<span class="text-xs text-on-surface-variant">1小时前</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface mb-1">新粮测评：挑食怪竟然光盘了 🍜</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-4">记录一次换粮过程，适口性极佳，这下挑食的老父亲可以放心了。</p>
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-xl">favorite</span>
+<span class="text-xs font-medium">189</span>
+</button>
+<button class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-xl">chat_bubble</span>
+<span class="text-xs font-medium">15</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 4: Shiba Inu Morning Walk -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm">
+<div class="relative aspect-[3/4] w-full">
+<img alt="Shiba Inu pulling on leash at dawn" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASUwER8v7UBLTe4h7TDtk5IYL2hz9IjlNe285UNNh7nKOr2B0paldLbTIRmFXsoqxN4Y26Dme0MX0mq1qY98cIpMgzZfXj2DT_iqE4_9Sxajojsy2iO2OO91qK6WfxucIbC7FkTZmSGtDB8C9A5enlo18pUf3n512V4weaAL1AIWaavvBtlQA2HxryLT60pe5yg3xhuFF2LUTeJTJ5dYC8qVb7uSEEaGXgYZkqPhpx2-Q2bE1zJAhG_Q53HnZZJe3iUrW3tK3-Gg"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-white/70 backdrop-blur-md rounded-full text-xs font-semibold text-primary">柴犬</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<img alt="麻薯" class="w-8 h-8 rounded-full border border-surface-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2q6ATEgXFxiLZKxphPj0j8irF3XnAV3HBwjcz4MZeg3ot5IqJDV1U-OcE5H5v17dJBiSPKRTzc91icoSUczYpJqHWKlLs0IDK2Yw7ycfFvnrWKgmXYsguvz83qtFaBYKitHF8cKz8KDfGpCH5plLjdYeAvMHmEabXn-DKZ76aPaEsidtLNa8QEN5h9BgkXvbmOLXY3_nEgbl7SimgnGTdCAosKZ3Y5pxfrFXJsQh3L9UPzX9OpJrQ7bXKO5wg3qgbuGYu2IImwg"/>
+<span class="font-bold text-on-surface">麻薯</span>
+</div>
+<span class="text-xs text-on-surface-variant">2小时前</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface mb-1">清晨六点的强制散步 😴</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-4">早晨六点就被拉起来，狗子精神百倍我崩溃。谁能告诉我到底谁在遛谁？</p>
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-xl">favorite</span>
+<span class="text-xs font-medium">330</span>
+</button>
+<button class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-xl">chat_bubble</span>
+<span class="text-xs font-medium">45</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 5: Tabby Cat Health Check -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm mb-8">
+<div class="relative aspect-square w-full">
+<img alt="Tabby cat at vet clinic" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkguZ_pB6lcNQjjTv_Sh_fYl7225jnsnkKQ-xmwObi2hlkT_jq1uStjfgMePdbU38B9awQjKJT_C4Fs9hn3CF6IN862duywWukN4HFNLueBPgupfLBc8RcRRJCF_z06CphiZ6IOxqgL51aszqgVZJvG04RAQSZXjUhmqojXPvlTbSfBP4jP1PGjRFhaJGHZIbZOsUQYa4_71tLhfAbVRMZwRSStFJuxStdxtoJlxLTjMlKQ7p6DTc3pnIo1rBegLqZgEcHmcZZfA"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-white/70 backdrop-blur-md rounded-full text-xs font-semibold text-primary">美短</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<img alt="斑点" class="w-8 h-8 rounded-full border border-surface-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-ed84OT2AdeUGx7FPudj9g-pBttGfESjQvk0_draHiUMZgG3rLzIL4kFQ4np8ICtVv_MKjQ7AFZFyxX4PI9OrU-V8mPzMORqJQwJDsFw-XVG4cdgF55CF4-NBNEO__ydW3J7E5pOYkSBsB6DhWElEeneLOHp0Floo5v8TWQiE0dnpdy5394iuaw70PstbHoBjLsl_ncPWdBDyJXyfP4frycSyJfkySCuPoR6UDlAImeEueFzHSXB7N-QZBTWq65bPN8XP3FaXFw"/>
+<span class="font-bold text-on-surface">斑点</span>
+</div>
+<span class="text-xs text-on-surface-variant">3小时前</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface mb-1">年度体检报告：全绿指标达成！🦴</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-4">今日份体检报告出炉，指标一切正常。可以放心地去吃罐罐奖励啦。</p>
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-xl">favorite</span>
+<span class="text-xs font-medium">150</span>
+</button>
+<button class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-xl">chat_bubble</span>
+<span class="text-xs font-medium">10</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-end px-4 h-20 bg-[#fcf6ee]/90 dark:bg-orange-950/90 backdrop-blur-xl shadow-[0_-4px_24px_rgba(139,75,0,0.06)] rounded-t-[3rem] pb-safe">
+<!-- 首页 Active -->
+<button class="flex flex-col items-center justify-center bg-gradient-to-br from-[#8b4b00] to-[#f3953a] text-white rounded-full p-3 shadow-lg -translate-y-2 active:scale-90 duration-300 spring-behavior">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-semibold mt-0.5">首页</span>
+</button>
+<!-- 发现 -->
+<button class="flex flex-col items-center justify-center text-[#5e5b55] dark:text-[#d1c5b4] p-2 hover:text-[#8b4b00] transition-all">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-semibold mt-0.5">发现</span>
+</button>
+<!-- 发布 Center FAB -->
+<button class="flex flex-col items-center justify-center text-[#8b4b00] dark:text-[#ffb77c] p-2 hover:scale-110 transition-transform">
+<div class="p-1 rounded-full bg-primary/10">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+</div>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-semibold">发布</span>
+</button>
+<!-- 消息 -->
+<button class="flex flex-col items-center justify-center text-[#5e5b55] dark:text-[#d1c5b4] p-2 hover:text-[#8b4b00] transition-all">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-semibold mt-0.5">消息</span>
+</button>
+<!-- 我的 -->
+<button class="flex flex-col items-center justify-center text-[#5e5b55] dark:text-[#d1c5b4] p-2 hover:text-[#8b4b00] transition-all">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-semibold mt-0.5">我的</span>
+</button>
+</nav>
+</body></html>

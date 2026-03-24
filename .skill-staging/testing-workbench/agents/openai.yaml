@@ -1,0 +1,4 @@
+interface:
+  display_name: "Testing Workbench"
+  short_description: "Full-stack QA, regression checks, and release-ready verification"
+  default_prompt: "Test this feature end to end, verify the API and UI behavior, capture evidence, and tell me what passes, fails, or blocks release."

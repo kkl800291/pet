@@ -1,0 +1,239 @@
+{
+  "admins": [
+    {
+      "id": "admin_demo",
+      "name": "平台管理员",
+      "email": "admin@pet.local",
+      "password": "admin123",
+      "createdAt": "2026-03-22T14:00:21.777Z"
+    }
+  ],
+  "owners": [
+    {
+      "id": "owner_b8574f19",
+      "phone": "13900000002",
+      "name": "小猫",
+      "avatar": "",
+      "status": "active",
+      "followers": [],
+      "createdAt": "2026-03-22T14:07:33.470Z",
+      "updatedAt": "2026-03-22T14:07:33.470Z"
+    },
+    {
+      "id": "owner_afa6ee01",
+      "phone": "13900000001",
+      "name": "小测",
+      "avatar": "",
+      "status": "active",
+      "followers": [],
+      "createdAt": "2026-03-22T14:04:11.225Z",
+      "updatedAt": "2026-03-22T14:04:11.226Z"
+    },
+    {
+      "id": "owner_937a0e01",
+      "phone": "13900000000",
+      "name": "小柯",
+      "avatar": "",
+      "status": "active",
+      "followers": [],
+      "createdAt": "2026-03-22T14:02:42.545Z",
+      "updatedAt": "2026-03-22T14:02:42.545Z"
+    },
+    {
+      "id": "owner_demo",
+      "name": "阿柯",
+      "phone": "13800000000",
+      "avatar": "",
+      "status": "active",
+      "createdAt": "2026-03-22T14:00:21.776Z",
+      "followers": [
+        "owner_mina"
+      ]
+    },
+    {
+      "id": "owner_mina",
+      "name": "米娜",
+      "phone": "13800000001",
+      "avatar": "",
+      "status": "active",
+      "createdAt": "2026-03-22T14:00:21.777Z",
+      "followers": [
+        "owner_demo"
+      ]
+    },
+    {
+      "id": "owner_chen",
+      "name": "陈老师",
+      "phone": "13800000002",
+      "avatar": "",
+      "status": "active",
+      "createdAt": "2026-03-22T14:00:21.777Z",
+      "followers": []
+    }
+  ],
+  "pets": [
+    {
+      "id": "pet_momo",
+      "ownerId": "owner_demo",
+      "name": "糯米",
+      "species": "猫",
+      "breed": "英短",
+      "age": "2岁",
+      "sex": "母",
+      "avatar": "",
+      "tags": [
+        "亲人",
+        "爱睡觉"
+      ],
+      "notes": "对陌生声音敏感，换粮要循序渐进。",
+      "habits": "早上更活跃，喜欢靠窗晒太阳。",
+      "visibility": "public",
+      "createdAt": "2026-03-22T14:00:21.777Z",
+      "updatedAt": "2026-03-22T14:00:21.777Z"
+    },
+    {
+      "id": "pet_lucky",
+      "ownerId": "owner_mina",
+      "name": "旺仔",
+      "species": "狗",
+      "breed": "柴犬",
+      "age": "4岁",
+      "sex": "公",
+      "avatar": "",
+      "tags": [
+        "活泼",
+        "爱散步"
+      ],
+      "notes": "容易兴奋，外出需牵引。",
+      "habits": "晚饭后会主动要出门散步。",
+      "visibility": "public",
+      "createdAt": "2026-03-22T14:00:21.777Z",
+      "updatedAt": "2026-03-22T14:00:21.777Z"
+    },
+    {
+      "id": "pet_cloud",
+      "ownerId": "owner_chen",
+      "name": "云朵",
+      "species": "兔",
+      "breed": "垂耳兔",
+      "age": "1岁",
+      "sex": "母",
+      "avatar": "",
+      "tags": [
+        "胆小",
+        "安静"
+      ],
+      "notes": "对环境变化敏感，笼内清洁频率高。",
+      "habits": "白天安静，夜里会活动。",
+      "visibility": "public",
+      "createdAt": "2026-03-22T14:00:21.777Z",
+      "updatedAt": "2026-03-22T14:00:21.777Z"
+    }
+  ],
+  "posts": [
+    {
+      "id": "post_1",
+      "petId": "pet_momo",
+      "ownerId": "owner_demo",
+      "title": "今天精神不错",
+      "content": "糯米今天一整天都很黏人，午后睡了很久。提醒自己晚上补一次梳毛。",
+      "images": [],
+      "visibility": "public",
+      "status": "approved",
+      "likes": [
+        "owner_mina"
+      ],
+      "comments": [
+        {
+          "id": "comment_1",
+          "ownerId": "owner_mina",
+          "content": "看起来状态很好，记得检查掉毛量。",
+          "createdAt": "2026-03-22T14:00:21.777Z"
+        }
+      ],
+      "createdAt": "2026-03-22T14:00:21.777Z",
+      "updatedAt": "2026-03-22T14:00:21.777Z"
+    },
+    {
+      "id": "post_2",
+      "petId": "pet_lucky",
+      "ownerId": "owner_mina",
+      "title": "今天去公园了",
+      "content": "旺仔在草地上跑了半小时，回家后喝水很多，精神正常。",
+      "images": [],
+      "visibility": "public",
+      "status": "approved",
+      "likes": [
+        "owner_demo",
+        "owner_chen"
+      ],
+      "comments": [],
+      "createdAt": "2026-03-22T14:00:21.777Z",
+      "updatedAt": "2026-03-22T14:00:21.777Z"
+    },
+    {
+      "id": "post_3",
+      "petId": "pet_cloud",
+      "ownerId": "owner_chen",
+      "title": "换垫料提醒",
+      "content": "云朵今天略微焦躁，先把笼垫更换并保持安静环境。",
+      "images": [],
+      "visibility": "public",
+      "status": "pending",
+      "likes": [],
+      "comments": [],
+      "createdAt": "2026-03-22T14:00:21.777Z",
+      "updatedAt": "2026-03-22T14:00:21.777Z"
+    }
+  ],
+  "follows": [
+    {
+      "id": "follow_05640678",
+      "followerOwnerId": "owner_demo",
+      "targetPetId": "pet_lucky",
+      "createdAt": "2026-03-22T14:00:21.777Z"
+    },
+    {
+      "id": "follow_713b9fcc",
+      "followerOwnerId": "owner_mina",
+      "targetPetId": "pet_momo",
+      "createdAt": "2026-03-22T14:00:21.777Z"
+    }
+  ],
+  "reports": [
+    {
+      "id": "report_b4200fb5",
+      "reporterOwnerId": "owner_chen",
+      "targetType": "post",
+      "targetId": "post_3",
+      "reason": "内容需要人工确认",
+      "status": "open",
+      "createdAt": "2026-03-22T14:00:21.777Z",
+      "resolvedAt": ""
+    }
+  ],
+  "chats": [
+    {
+      "id": "owner_demo__owner_mina",
+      "ownerIds": [
+        "owner_demo",
+        "owner_mina"
+      ],
+      "messages": [
+        {
+          "id": "msg_71afbfdf",
+          "senderOwnerId": "owner_demo",
+          "content": "你好，想和糯米认识一下。",
+          "createdAt": "2026-03-22T14:00:21.777Z"
+        },
+        {
+          "id": "msg_03ad12b5",
+          "senderOwnerId": "owner_mina",
+          "content": "可以呀，旺仔也很喜欢交朋友。",
+          "createdAt": "2026-03-22T14:00:21.777Z"
+        }
+      ],
+      "unreadByOwnerId": {}
+    }
+  ]
+}

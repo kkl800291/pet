@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-variant": "#d9dde0",
+              "error": "#b31b25",
+              "primary-container": "#67f4cd",
+              "background": "#f5f7f9",
+              "tertiary-container": "#00cefe",
+              "tertiary": "#00647c",
+              "inverse-primary": "#70fdd5",
+              "outline-variant": "#abadaf",
+              "on-secondary-container": "#005c52",
+              "surface": "#f5f7f9",
+              "primary-fixed-dim": "#56e6bf",
+              "on-tertiary-fixed-variant": "#004a5d",
+              "secondary": "#00675c",
+              "surface-container-lowest": "#ffffff",
+              "secondary-container": "#47fce4",
+              "on-primary-container": "#005947",
+              "tertiary-fixed": "#00cefe",
+              "error-dim": "#9f0519",
+              "surface-bright": "#f5f7f9",
+              "surface-dim": "#d0d5d8",
+              "on-secondary-fixed": "#004840",
+              "on-surface-variant": "#595c5e",
+              "on-primary-fixed-variant": "#00644f",
+              "primary": "#006853",
+              "error-container": "#fb5151",
+              "on-secondary-fixed-variant": "#00675c",
+              "on-error-container": "#570008",
+              "secondary-dim": "#005a50",
+              "on-tertiary-fixed": "#002935",
+              "on-error": "#ffefee",
+              "inverse-surface": "#0b0f10",
+              "surface-container-high": "#dfe3e6",
+              "secondary-fixed": "#47fce4",
+              "secondary-fixed-dim": "#2dedd6",
+              "on-surface": "#2c2f31",
+              "primary-dim": "#005b48",
+              "outline": "#747779",
+              "tertiary-dim": "#00576d",
+              "on-tertiary": "#e2f6ff",
+              "tertiary-fixed-dim": "#00c0ec",
+              "on-tertiary-container": "#004051",
+              "surface-container-highest": "#d9dde0",
+              "surface-container-low": "#eef1f3",
+              "on-primary-fixed": "#004536",
+              "on-primary": "#c5ffe9",
+              "surface-container": "#e5e9eb",
+              "on-secondary": "#c0fff3",
+              "on-background": "#2c2f31",
+              "surface-tint": "#006853",
+              "primary-fixed": "#67f4cd",
+              "inverse-on-surface": "#9a9d9f"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans", "PingFang SC", "sans-serif"],
+              "body": ["Plus Jakarta Sans", "PingFang SC", "sans-serif"],
+              "label": ["Plus Jakarta Sans", "PingFang SC", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', 'PingFang SC', sans-serif; background-color: #f5f7f9; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        tr:hover { background-color: rgba(103, 244, 205, 0.08); transition: background-color 0.2s ease-out; }
+    </style>
+</head>
+<body class="text-on-surface antialiased">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full z-40 flex flex-col p-4 w-64 bg-slate-50 dark:bg-slate-900 font-['Plus_Jakarta_Sans'] text-sm font-medium">
+<div class="mb-8 px-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">pets</span>
+</div>
+<div>
+<h1 class="text-lg font-bold text-[#006853] dark:text-[#67f4cd] leading-none">宠社管理系统</h1>
+<p class="text-[10px] text-slate-500 mt-1 uppercase tracking-widest">v3.0 专业版</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>概览统计</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">fact_check</span>
+<span>内容审核</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-[#67f4cd]/20 text-[#006853] dark:text-[#67f4cd] rounded-xl font-semibold scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined">report</span>
+<span>举报处理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>用户管理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">pets</span>
+<span>宠物管理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">security</span>
+<span>风控中心</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>基础配置</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-white/50 dark:bg-slate-800/50 rounded-2xl flex items-center gap-3">
+<img alt="Admin Avatar" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container" data-alt="Administrator profile picture avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChKuNoyW7jGT-_7CLtKUog9uaFMy7Pb3ih6GfylXhx-tDoDCJOZrzCcjdpsVXeAMnmxq3CkTK9Uep39jzVMBPDSaSB0HjC-iBvhHNWuu7Wct98-oeLWluO0YE2RRnBC_Q8aIwOsWGkxHw7ZeaQt3wjxW_GFKobquWh87QrF_QP2WZ0_HugMPx6fPqjaIef1UmJPcXQ5Yc1-SJkzAkJJsQnWJD1IXiIDZ71pNtKezssoK4KFGfISnawW2gwKpKr6UZK6l4QOuucaeoP"/>
+<div class="overflow-hidden">
+<p class="font-semibold text-on-surface truncate text-xs">Admin Manager</p>
+<p class="text-[10px] text-slate-500 truncate">超级管理员</p>
+</div>
+<button class="ml-auto text-slate-400 hover:text-error transition-colors">
+<span class="material-symbols-outlined text-xl">logout</span>
+</button>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 left-64 h-16 flex items-center justify-between px-8 z-30 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800 shadow-sm dark:shadow-none">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-slate-400 font-['Plus_Jakarta_Sans'] text-sm">
+<span class="hover:text-primary cursor-pointer transition-all">首页</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-[#006853] font-bold border-b-2 border-[#006853]">面包屑</span>
+</div>
+<div class="h-8 w-[1px] bg-slate-100 mx-2"></div>
+<div class="relative group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-lg">search</span>
+<input class="pl-10 pr-4 py-1.5 bg-surface-container-low border-none rounded-full text-sm w-64 focus:ring-2 focus:ring-primary-container transition-all" placeholder="搜索举报单号或用户名..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-500 hover:text-[#006853] hover:bg-primary-container/20 transition-all active:opacity-80">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-500 hover:text-[#006853] hover:bg-primary-container/20 transition-all active:opacity-80">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-500 hover:text-[#006853] hover:bg-primary-container/20 transition-all active:opacity-80">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="h-6 w-[1px] bg-slate-100 mx-2"></div>
+<img alt="User Profile" class="w-8 h-8 rounded-full border border-primary-container/30" data-alt="User profile avatar small" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEF2NfGygaYCbsZTySeAR9KkdS88a-3winJKcwgXRwhP7IHLKyAGNKAXzlw-jIlQ0eMXL_FYj-s2P4kXgoMXf3_3R5bUKZSCJ03UF7D-RvoSFOUy8H3TXj_QG5BDELdjU5UhRitX1g1grjHvQDpfT_SIQBkRYSqLhCJmm9Rhr-ICInUgubxFwooOj5PNDbSR-QJeOd5yX47Wk9T87qhH5Iuy-A2moCC2TgabRlngHdPl-7GFuRiJQiLJmqXm5RyPkomtEifHm_okm6"/>
+</div>
+</header>
+<!-- Content Area -->
+<div class="pt-24 px-8 pb-12">
+<!-- Header Section -->
+<div class="flex items-end justify-between mb-8">
+<div>
+<h2 class="text-3xl font-extrabold tracking-tight text-on-surface">举报处理列表 3.0</h2>
+<p class="text-on-surface-variant mt-2">实时监控社区安全，快速处理违规上报内容。</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 bg-surface-container-lowest text-on-surface border border-outline-variant/20 px-5 py-2.5 rounded-xl hover:bg-surface-container transition-all font-medium text-sm">
+<span class="material-symbols-outlined text-lg">tune</span>
+                        高级筛选
+                    </button>
+<button class="flex items-center gap-2 bg-primary text-on-primary px-6 py-2.5 rounded-xl shadow-lg shadow-primary/20 hover:bg-primary-dim transition-all font-semibold text-sm">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">add_moderator</span>
+                        批量处理
+                    </button>
+</div>
+</div>
+<!-- Dashboard Brief Grid -->
+<div class="grid grid-cols-4 gap-6 mb-8">
+<div class="bg-primary-container/20 p-6 rounded-xl border border-primary-container/30">
+<p class="text-xs font-bold text-on-primary-container/60 uppercase tracking-widest mb-1">待处理举报</p>
+<p class="text-3xl font-extrabold text-primary">128</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10">
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-1">今日已处理</p>
+<p class="text-3xl font-extrabold text-on-surface">45</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10">
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-1">平均响应时长</p>
+<p class="text-3xl font-extrabold text-on-surface">14m</p>
+</div>
+<div class="bg-error-container/10 p-6 rounded-xl border border-error-container/20">
+<p class="text-xs font-bold text-error uppercase tracking-widest mb-1">紧急待办</p>
+<p class="text-3xl font-extrabold text-error">12</p>
+</div>
+</div>
+<!-- Main Table Container -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden border border-outline-variant/10">
+<div class="overflow-x-auto no-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-8 py-4 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest whitespace-nowrap">类型</th>
+<th class="px-6 py-4 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest whitespace-nowrap">原因简述</th>
+<th class="px-6 py-4 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest whitespace-nowrap">举报人</th>
+<th class="px-6 py-4 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest whitespace-nowrap">被举报对象</th>
+<th class="px-6 py-4 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest whitespace-nowrap">状态</th>
+<th class="px-6 py-4 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest whitespace-nowrap">提交时间</th>
+<th class="px-8 py-4 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest text-right whitespace-nowrap">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr>
+<td class="px-8 py-5 whitespace-nowrap">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold bg-error-container/10 text-error-dim uppercase border border-error-container/20">有害内容</span>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<p class="text-sm font-medium text-on-surface max-w-[240px] truncate">发布具有煽动性的不实养宠谣言...</p>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-[10px] font-bold text-on-surface-variant">王</div>
+<span class="text-sm">王小明</span>
+</div>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<span class="text-sm font-medium text-primary">@铲屎官阿强</span>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-error text-on-error">
+<span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                                        加急处理
+                                    </span>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<span class="text-xs text-on-surface-variant font-medium">2023-10-24 14:20</span>
+</td>
+<td class="px-8 py-5 whitespace-nowrap text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-primary hover:bg-primary-container/20 transition-all">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="px-4 py-1.5 rounded-lg bg-primary text-on-primary text-[11px] font-bold hover:bg-primary-dim transition-all shadow-sm">
+                                            立即审查
+                                        </button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr>
+<td class="px-8 py-5 whitespace-nowrap">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold bg-tertiary-container/10 text-tertiary uppercase border border-tertiary-container/20">广告骚扰</span>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<p class="text-sm font-medium text-on-surface max-w-[240px] truncate">在评论区大量私信发送宠粮推销链接</p>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full" data-alt="User reporter avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSFxnVpBeLHwKuHSvL53c3EUEUvy1HYNh5_ZLEuGOSrsTpBV9Wib3gJV2CzaPG4wT0USqc7akaUohL0_-HJnwvoPiSWUVr08OsKEvYRxJwD4jZ5HDvYm_k4YgcnWHUnbgjvEC50hppiESECeTveTMMapR1FlJoSyAepiZ736zTFmRl2QfdTuU5bXVIVl2ocAszPHE4qP-Hu43g4qSpPcwOnct7ceRQym2ORB_oqf3qntJiAKJ1Io7szHljvlG91q8ZW9xrLMNEErwE"/>
+<span class="text-sm">Lily_Paws</span>
+</div>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<span class="text-sm font-medium text-primary">宠物用品集合店</span>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-primary-container/30 text-on-primary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                        待处理
+                                    </span>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<span class="text-xs text-on-surface-variant font-medium">2023-10-24 15:05</span>
+</td>
+<td class="px-8 py-5 whitespace-nowrap text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-primary hover:bg-primary-container/20 transition-all">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="px-4 py-1.5 rounded-lg bg-surface-container-high text-on-surface text-[11px] font-bold hover:bg-surface-variant transition-all">
+                                            分配任务
+                                        </button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr>
+<td class="px-8 py-5 whitespace-nowrap">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600 uppercase border border-slate-200">言语不当</span>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<p class="text-sm font-medium text-on-surface max-w-[240px] truncate">针对流浪猫领养帖发表侮辱性评论</p>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary-container/30 flex items-center justify-center text-[10px] font-bold text-primary">Z</div>
+<span class="text-sm">张三爱猫</span>
+</div>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<span class="text-sm font-medium text-primary">匿名用户_9527</span>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-surface-container text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant"></span>
+                                        已处理
+                                    </span>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<span class="text-xs text-on-surface-variant font-medium">2023-10-23 21:12</span>
+</td>
+<td class="px-8 py-5 whitespace-nowrap text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-primary hover:bg-primary-container/20 transition-all">
+<span class="material-symbols-outlined text-lg">history</span>
+</button>
+<button class="px-4 py-1.5 rounded-lg border border-outline-variant/30 text-on-surface-variant text-[11px] font-bold hover:bg-surface-container transition-all">
+                                            查看结果
+                                        </button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr>
+<td class="px-8 py-5 whitespace-nowrap">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold bg-error-container text-on-error-container uppercase border border-error">虐待倾向</span>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<p class="text-sm font-medium text-on-surface max-w-[240px] truncate">发布视频疑似包含通过暴力手段训练宠物</p>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full" data-alt="Volunteer user avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuRM-0l3BpGW5ZO0SKQ4Al_3CtrxGFk_3JbkTKGa7SQknl3Gp0xoZrZqwxxJtH5gNsD8rOcDI0qdKBJwyc5VEPWb70VzrNKIRc-h3d2KjAXHPvLyaJZYU2soNGSmPK7syH3zptHjHMJBy7HHLq1nE4gLFIHKgJ2-XnHkmgJo1Pt_nCclprNjUrBjKIFveNCO7HUvGn7ozXPM4medavzrNa2NIn4xISVOl4DE76cQ6zSr8nlDy4t4Zk1ia3_42G-FydqJjX8nT1lSpf"/>
+<span class="text-sm">志愿者老吴</span>
+</div>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<span class="text-sm font-medium text-primary">@恶魔猎手狗狗</span>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-error text-on-error">
+<span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                                        加急处理
+                                    </span>
+</td>
+<td class="px-6 py-5 whitespace-nowrap">
+<span class="text-xs text-on-surface-variant font-medium">2023-10-24 16:45</span>
+</td>
+<td class="px-8 py-5 whitespace-nowrap text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-primary hover:bg-primary-container/20 transition-all">
+<span class="material-symbols-outlined text-lg">shield</span>
+</button>
+<button class="px-4 py-1.5 rounded-lg bg-error text-on-error text-[11px] font-bold hover:bg-error-dim transition-all shadow-md">
+                                            强制封禁
+                                        </button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-8 py-6 bg-surface-container-lowest border-t border-surface-container flex items-center justify-between">
+<p class="text-xs text-on-surface-variant font-medium">显示第 1 到 4 条，共 128 条记录</p>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 rounded-xl flex items-center justify-center border border-outline-variant/20 hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-sm">keyboard_arrow_left</span>
+</button>
+<button class="w-10 h-10 rounded-xl bg-primary text-on-primary font-bold text-xs shadow-sm shadow-primary/30">1</button>
+<button class="w-10 h-10 rounded-xl flex items-center justify-center border border-outline-variant/20 hover:bg-surface-container transition-all font-bold text-xs">2</button>
+<button class="w-10 h-10 rounded-xl flex items-center justify-center border border-outline-variant/20 hover:bg-surface-container transition-all font-bold text-xs">3</button>
+<span class="px-2 text-slate-400">...</span>
+<button class="w-10 h-10 rounded-xl flex items-center justify-center border border-outline-variant/20 hover:bg-surface-container transition-all font-bold text-xs">12</button>
+<button class="w-10 h-10 rounded-xl flex items-center justify-center border border-outline-variant/20 hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-sm">keyboard_arrow_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Contextual FAB (Only for list adding or urgent report creation) -->
+<div class="fixed bottom-8 right-8 flex flex-col items-end gap-4 z-50">
+<button class="w-14 h-14 rounded-full bg-primary text-on-primary shadow-2xl shadow-primary/40 flex items-center justify-center hover:scale-110 active:scale-95 transition-all group">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform duration-300">add</span>
+</button>
+</div>
+</body></html>

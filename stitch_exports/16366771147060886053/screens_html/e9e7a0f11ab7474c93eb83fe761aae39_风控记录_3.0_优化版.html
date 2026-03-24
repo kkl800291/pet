@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>风控记录 3.0 - 宠社管理系统</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-variant": "#d9dde0",
+                        "error": "#b31b25",
+                        "primary-container": "#67f4cd",
+                        "background": "#f5f7f9",
+                        "tertiary-container": "#00cefe",
+                        "tertiary": "#00647c",
+                        "inverse-primary": "#70fdd5",
+                        "outline-variant": "#abadaf",
+                        "on-secondary-container": "#005c52",
+                        "surface": "#f5f7f9",
+                        "primary-fixed-dim": "#56e6bf",
+                        "on-tertiary-fixed-variant": "#004a5d",
+                        "secondary": "#00675c",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#47fce4",
+                        "on-primary-container": "#005947",
+                        "tertiary-fixed": "#00cefe",
+                        "error-dim": "#9f0519",
+                        "surface-bright": "#f5f7f9",
+                        "surface-dim": "#d0d5d8",
+                        "on-secondary-fixed": "#004840",
+                        "on-surface-variant": "#595c5e",
+                        "on-primary-fixed-variant": "#00644f",
+                        "primary": "#006853",
+                        "error-container": "#fb5151",
+                        "on-secondary-fixed-variant": "#00675c",
+                        "on-error-container": "#570008",
+                        "secondary-dim": "#005a50",
+                        "on-tertiary-fixed": "#002935",
+                        "on-error": "#ffefee",
+                        "inverse-surface": "#0b0f10",
+                        "surface-container-high": "#dfe3e6",
+                        "secondary-fixed": "#47fce4",
+                        "secondary-fixed-dim": "#2dedd6",
+                        "on-surface": "#2c2f31",
+                        "primary-dim": "#005b48",
+                        "outline": "#747779",
+                        "tertiary-dim": "#00576d",
+                        "on-tertiary": "#e2f6ff",
+                        "tertiary-fixed-dim": "#00c0ec",
+                        "on-tertiary-container": "#004051",
+                        "surface-container-highest": "#d9dde0",
+                        "surface-container-low": "#eef1f3",
+                        "on-primary-fixed": "#004536",
+                        "on-primary": "#c5ffe9",
+                        "surface-container": "#e5e9eb",
+                        "on-secondary": "#c0fff3",
+                        "on-background": "#2c2f31",
+                        "surface-tint": "#006853",
+                        "primary-fixed": "#67f4cd",
+                        "inverse-on-surface": "#9a9d9f"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #d9dde0; border-radius: 10px; }
+        .no-wrap { white-space: nowrap; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full z-40 flex flex-col p-4 w-64 bg-slate-50 dark:bg-slate-900 font-['Plus_Jakarta_Sans'] text-sm font-medium">
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div>
+<h1 class="text-lg font-bold text-[#006853] dark:text-[#67f4cd]">宠社管理系统</h1>
+<p class="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">v3.0 专业版</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>概况统计</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">fact_check</span>
+<span>内容审核</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">report</span>
+<span>举报处理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>用户管理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">pets</span>
+<span>宠物管理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-[#67f4cd]/20 text-[#006853] dark:text-[#67f4cd] rounded-xl font-semibold scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">security</span>
+<span>风控中心</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>基础配置</span>
+</a>
+</nav>
+<div class="mt-auto p-2 bg-white/50 dark:bg-slate-800/50 rounded-2xl flex items-center gap-3">
+<img alt="Admin Avatar" class="w-10 h-10 rounded-xl object-cover" data-alt="Admin User Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc7_Smh0QqSxy-yTav4X2HkEnYB3OfcXImot97cysEaFf1RNKUWdSqEjV1QtkTfuuoXIqISrnbiZ7_7enVAkQ_-zC6LQZlbBiwQOZ3CbhRw6AOqWTljBFxT2JjVPjnxJvdqgD1h4R_hI18ERgYB2ffqJkq7nAPy6PTkUCPMTyiGEpx6fn4b308AJ7q_BcSiRZhcM2EQ0ZtRskr713vbr5kGM0-zxJQnE4MzQ9qjPjF-bGxdyxC_6aO80Unisb1d6DUCzKNBRl3nN6y"/>
+<div class="flex-1 overflow-hidden">
+<p class="text-xs font-bold truncate">超级管理员</p>
+<p class="text-[10px] text-slate-400 truncate">admin@petcommunity.com</p>
+</div>
+<button class="p-1.5 text-slate-400 hover:text-error transition-colors">
+<span class="material-symbols-outlined text-lg">logout</span>
+</button>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-64 h-16 flex items-center justify-between px-8 z-30 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800 shadow-sm dark:shadow-none font-['Plus_Jakarta_Sans'] text-sm">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-full w-80">
+<span class="material-symbols-outlined text-slate-400">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-xs w-full placeholder:text-slate-400" placeholder="搜索风控记录..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-slate-400">首页</span>
+<span class="material-symbols-outlined text-slate-300 text-sm">chevron_right</span>
+<span class="text-[#006853] font-bold border-b-2 border-[#006853]">风控记录</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:text-[#006853] transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-[#006853] transition-all">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-[#006853] transition-all">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="h-6 w-[1px] bg-slate-200 mx-2"></div>
+<img alt="User Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary-container" data-alt="Mini User Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzP2CBOiET5cbUorL7LZAdz_YRzsWP3yTnjcep7HE0clCq9cURB5THqGvtJvo-6injKQE9Inu38ZzZVzVl1Do2JSU7jUPmh573sDrj4TxH8TpUi5aOJhC5bSDe4y9pUr8BYvk7LK46wxIx_G4gJbVACUKE-Hx6huahAFudgyCULxD10fq96aRAQ9Lh9_WNaACxt2tUkMl5FAt3VdyBX9p9_j3ZXV6j15Bs7YiepoYoTHizfoLNiKSEnO_zPKqloGN54zaN2U_UF6Uk"/>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 pt-24 pb-12 px-8">
+<div class="max-w-7xl mx-auto space-y-8">
+<!-- Header Section -->
+<div class="flex items-end justify-between">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-slate-900">风控中心 <span class="text-primary font-medium text-lg ml-2">Risk Control Hub</span></h2>
+<p class="text-slate-500 mt-1">监控全局异常活动，实时保护社区生态安全。</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container-lowest text-slate-600 px-5 py-2.5 rounded-xl font-semibold shadow-sm flex items-center gap-2 hover:bg-slate-50 transition-all border border-slate-100">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+                        高级筛选
+                    </button>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-xl font-semibold shadow-lg shadow-primary/20 flex items-center gap-2 hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-lg">download</span>
+                        导出报表
+                    </button>
+</div>
+</div>
+<!-- Bento Statistics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="col-span-1 bg-surface-container-lowest p-6 rounded-3xl border border-white shadow-sm hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-2xl bg-error-container/10 flex items-center justify-center text-error mb-4">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<p class="text-slate-500 text-xs font-bold uppercase tracking-wider">今日高危触发</p>
+<h3 class="text-2xl font-bold mt-1">12</h3>
+<div class="mt-2 flex items-center gap-1 text-error text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+15% 较昨日</span>
+</div>
+</div>
+<div class="col-span-1 bg-surface-container-lowest p-6 rounded-3xl border border-white shadow-sm hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-2xl bg-primary-container/20 flex items-center justify-center text-primary mb-4">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<p class="text-slate-500 text-xs font-bold uppercase tracking-wider">自动拦截次数</p>
+<h3 class="text-2xl font-bold mt-1">1,402</h3>
+<div class="mt-2 flex items-center gap-1 text-primary text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">trending_flat</span>
+<span>持平</span>
+</div>
+</div>
+<div class="col-span-2 bg-primary-dim p-6 rounded-3xl text-on-primary relative overflow-hidden flex items-center shadow-xl">
+<div class="relative z-10">
+<h4 class="text-xl font-bold">系统健康度报告</h4>
+<p class="text-primary-container/80 text-sm mt-1 max-w-[240px]">当前风控引擎运行在 v3.0.4 版本，响应延迟低于 24ms，状态良好。</p>
+<button class="mt-4 bg-primary-container text-on-primary-container px-4 py-2 rounded-full text-xs font-bold hover:bg-white transition-colors">查看详情</button>
+</div>
+<div class="absolute right-[-20px] bottom-[-20px] opacity-10">
+<span class="material-symbols-outlined text-[160px]">shield_with_heart</span>
+</div>
+</div>
+</div>
+<!-- Main Record Table Section -->
+<div class="bg-surface-container-lowest rounded-[2rem] overflow-hidden border border-white shadow-sm">
+<div class="px-8 py-6 border-b border-slate-50 flex items-center justify-between">
+<h3 class="text-lg font-bold flex items-center gap-2">
+                        实时风控记录
+                        <span class="px-2 py-0.5 rounded-md bg-primary-container/30 text-primary text-[10px] font-black uppercase">Live</span>
+</h3>
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-error animate-pulse"></div>
+<span class="text-xs text-slate-400 font-medium">正在监控 14,209 个活跃会话</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50/50">
+<th class="px-8 py-4 text-slate-400 text-[11px] font-bold uppercase tracking-widest no-wrap">时间</th>
+<th class="px-6 py-4 text-slate-400 text-[11px] font-bold uppercase tracking-widest no-wrap">动作类型</th>
+<th class="px-6 py-4 text-slate-400 text-[11px] font-bold uppercase tracking-widest no-wrap">目标对象</th>
+<th class="px-6 py-4 text-slate-400 text-[11px] font-bold uppercase tracking-widest no-wrap">执行人</th>
+<th class="px-6 py-4 text-slate-400 text-[11px] font-bold uppercase tracking-widest no-wrap">风险等级</th>
+<th class="px-6 py-4 text-slate-400 text-[11px] font-bold uppercase tracking-widest no-wrap">详情说明</th>
+<th class="px-8 py-4 text-slate-400 text-[11px] font-bold uppercase tracking-widest text-right">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50">
+<!-- Row 1 -->
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-8 py-5 no-wrap text-sm font-medium text-slate-600 font-['Plus_Jakarta_Sans']">2023-10-24 14:22:05</td>
+<td class="px-6 py-5 no-wrap">
+<span class="flex items-center gap-2 text-primary font-semibold text-sm">
+<span class="material-symbols-outlined text-lg">login</span>
+                                        异地异常登录
+                                    </span>
+</td>
+<td class="px-6 py-5 no-wrap">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-[10px] text-slate-400 font-bold">U</div>
+<span class="text-sm text-slate-900 font-medium">UID_8802931</span>
+</div>
+</td>
+<td class="px-6 py-5 no-wrap">
+<span class="px-3 py-1 rounded-full bg-secondary-container/20 text-secondary text-xs font-bold">System_Engine</span>
+</td>
+<td class="px-6 py-5 no-wrap">
+<span class="px-3 py-1 rounded-full bg-error-container text-on-error-container text-[11px] font-black tracking-tight flex items-center w-fit gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-on-error-container"></span>
+                                        高风险
+                                    </span>
+</td>
+<td class="px-6 py-5 no-wrap text-sm text-slate-500">检测到非常用 IP 地址尝试在 1 分钟内登录 5 次...</td>
+<td class="px-8 py-5 no-wrap text-right">
+<button class="text-primary font-bold text-xs hover:underline">详情</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-8 py-5 no-wrap text-sm font-medium text-slate-600 font-['Plus_Jakarta_Sans']">2023-10-24 14:18:32</td>
+<td class="px-6 py-5 no-wrap">
+<span class="flex items-center gap-2 text-primary font-semibold text-sm">
+<span class="material-symbols-outlined text-lg">payments</span>
+                                        大额提现挂起
+                                    </span>
+</td>
+<td class="px-6 py-5 no-wrap">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-[10px] text-slate-400 font-bold">W</div>
+<span class="text-sm text-slate-900 font-medium">WALLET_00293</span>
+</div>
+</td>
+<td class="px-6 py-5 no-wrap">
+<span class="px-3 py-1 rounded-full bg-slate-100 text-slate-500 text-xs font-bold">Admin_Zhang</span>
+</td>
+<td class="px-6 py-5 no-wrap">
+<span class="px-3 py-1 rounded-full bg-tertiary-container/30 text-tertiary text-[11px] font-black tracking-tight flex items-center w-fit gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                                        中风险
+                                    </span>
+</td>
+<td class="px-6 py-5 no-wrap text-sm text-slate-500">单笔金额超过 10,000 元，需人工二次核实账户安全...</td>
+<td class="px-8 py-5 no-wrap text-right">
+<button class="text-primary font-bold text-xs hover:underline">详情</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-8 py-5 no-wrap text-sm font-medium text-slate-600 font-['Plus_Jakarta_Sans']">2023-10-24 14:05:11</td>
+<td class="px-6 py-5 no-wrap">
+<span class="flex items-center gap-2 text-primary font-semibold text-sm">
+<span class="material-symbols-outlined text-lg">edit_note</span>
+                                        敏感词过滤修改
+                                    </span>
+</td>
+<td class="px-6 py-5 no-wrap">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-[10px] text-slate-400 font-bold">D</div>
+<span class="text-sm text-slate-900 font-medium">DICT_CORE_V2</span>
+</div>
+</td>
+<td class="px-6 py-5 no-wrap">
+<span class="px-3 py-1 rounded-full bg-slate-100 text-slate-500 text-xs font-bold">Super_Admin</span>
+</td>
+<td class="px-6 py-5 no-wrap">
+<span class="px-3 py-1 rounded-full bg-primary-container/30 text-primary text-[11px] font-black tracking-tight flex items-center w-fit gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                        低风险
+                                    </span>
+</td>
+<td class="px-6 py-5 no-wrap text-sm text-slate-500">新增 12 个社区敏感词项，同步至 3 个分片节点...</td>
+<td class="px-8 py-5 no-wrap text-right">
+<button class="text-primary font-bold text-xs hover:underline">详情</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-8 py-5 no-wrap text-sm font-medium text-slate-600 font-['Plus_Jakarta_Sans']">2023-10-24 13:58:44</td>
+<td class="px-6 py-5 no-wrap">
+<span class="flex items-center gap-2 text-primary font-semibold text-sm">
+<span class="material-symbols-outlined text-lg">api</span>
+                                        高频接口访问
+                                    </span>
+</td>
+<td class="px-6 py-5 no-wrap">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-[10px] text-slate-400 font-bold">A</div>
+<span class="text-sm text-slate-900 font-medium">API_USER_DETAIL</span>
+</div>
+</td>
+<td class="px-6 py-5 no-wrap">
+<span class="px-3 py-1 rounded-full bg-secondary-container/20 text-secondary text-xs font-bold">WAF_Policy_A</span>
+</td>
+<td class="px-6 py-5 no-wrap">
+<span class="px-3 py-1 rounded-full bg-tertiary-container/30 text-tertiary text-[11px] font-black tracking-tight flex items-center w-fit gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                                        中风险
+                                    </span>
+</td>
+<td class="px-6 py-5 no-wrap text-sm text-slate-500">单一 IP 每秒请求次数 &gt; 50，已进入观察名单...</td>
+<td class="px-8 py-5 no-wrap text-right">
+<button class="text-primary font-bold text-xs hover:underline">详情</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-8 py-6 bg-slate-50/30 flex items-center justify-between border-t border-slate-50">
+<span class="text-xs text-slate-500 font-medium">显示 1-4 条，共 1,248 条记录</span>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-lg flex items-center justify-center bg-white border border-slate-200 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center bg-primary text-on-primary font-bold text-xs">1</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center bg-white border border-slate-100 text-slate-600 font-bold text-xs hover:bg-slate-50">2</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center bg-white border border-slate-100 text-slate-600 font-bold text-xs hover:bg-slate-50">3</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center bg-white border border-slate-200 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Contextual Help / Bento Card -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="col-span-1 bg-white p-6 rounded-3xl border border-slate-100 flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">auto_fix</span>
+</div>
+<div>
+<h4 class="text-sm font-bold">智能建议</h4>
+<p class="text-xs text-slate-500 mt-1 leading-relaxed">基于最近的登录模式，建议调整账户安全策略为“严格模式”。</p>
+</div>
+</div>
+<div class="col-span-1 bg-white p-6 rounded-3xl border border-slate-100 flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl bg-tertiary-container/20 flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined">rule_folder</span>
+</div>
+<div>
+<h4 class="text-sm font-bold">规则更新</h4>
+<p class="text-xs text-slate-500 mt-1 leading-relaxed">风控规则库已于 2 小时前自动更新，新增 14 个反欺诈签名。</p>
+</div>
+</div>
+<div class="col-span-1 bg-white p-6 rounded-3xl border border-slate-100 flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl bg-error-container/10 flex items-center justify-center text-error shrink-0">
+<span class="material-symbols-outlined">history</span>
+</div>
+<div>
+<h4 class="text-sm font-bold">历史回溯</h4>
+<p class="text-xs text-slate-500 mt-1 leading-relaxed">支持长达 180 天的原始日志回溯，满足合规审计要求。</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB Suppression: Risk Control is a detail/monitoring task, navigation is primary -->
+</body></html>

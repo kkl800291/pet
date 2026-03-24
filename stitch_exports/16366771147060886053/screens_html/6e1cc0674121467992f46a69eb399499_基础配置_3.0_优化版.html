@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "background": "#f5f7f9",
+              "tertiary": "#00647c",
+              "surface": "#f5f7f9",
+              "secondary-fixed-dim": "#2dedd6",
+              "on-primary": "#c5ffe9",
+              "inverse-on-surface": "#9a9d9f",
+              "secondary-container": "#47fce4",
+              "surface-container": "#e5e9eb",
+              "secondary": "#00675c",
+              "on-surface": "#2c2f31",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-container": "#004051",
+              "on-primary-fixed-variant": "#00644f",
+              "surface-container-high": "#dfe3e6",
+              "on-tertiary": "#e2f6ff",
+              "surface-variant": "#d9dde0",
+              "primary-fixed-dim": "#56e6bf",
+              "on-primary-container": "#005947",
+              "inverse-primary": "#70fdd5",
+              "secondary-fixed": "#47fce4",
+              "primary-fixed": "#67f4cd",
+              "inverse-surface": "#0b0f10",
+              "surface-tint": "#006853",
+              "on-secondary-fixed": "#004840",
+              "on-tertiary-fixed": "#002935",
+              "on-secondary": "#c0fff3",
+              "primary": "#006853",
+              "error": "#b31b25",
+              "on-secondary-fixed-variant": "#00675c",
+              "error-dim": "#9f0519",
+              "tertiary-fixed": "#00cefe",
+              "tertiary-container": "#00cefe",
+              "outline": "#747779",
+              "on-error-container": "#570008",
+              "on-error": "#ffefee",
+              "on-secondary-container": "#005c52",
+              "surface-bright": "#f5f7f9",
+              "surface-container-highest": "#d9dde0",
+              "on-tertiary-fixed-variant": "#004a5d",
+              "primary-container": "#67f4cd",
+              "on-background": "#2c2f31",
+              "tertiary-dim": "#00576d",
+              "on-surface-variant": "#595c5e",
+              "surface-dim": "#d0d5d8",
+              "surface-container-low": "#eef1f3",
+              "on-primary-fixed": "#004536",
+              "primary-dim": "#005b48",
+              "outline-variant": "#abadaf",
+              "secondary-dim": "#005a50",
+              "error-container": "#fb5151",
+              "tertiary-fixed-dim": "#00c0ec"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body { font-family: 'Plus Jakarta Sans', 'PingFang SC', sans-serif; }
+      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+      .glass-card { backdrop-filter: blur(20px); background: rgba(255, 255, 255, 0.7); }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        background: #006853;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- SideNavBar -->
+<aside class="w-72 h-screen fixed left-0 top-0 border-r-0 bg-slate-50 dark:bg-slate-900 font-['Plus_Jakarta_Sans'] antialiased py-6 flex flex-col gap-2">
+<div class="px-8 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">pets</span>
+</div>
+<div>
+<h1 class="text-xl font-bold text-emerald-900 dark:text-emerald-50">PetAdmin 3.0</h1>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">薄荷鲜氧专业主义</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors mx-2 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-2xl" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="whitespace-nowrap">概览</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors mx-2 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-2xl" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+<span class="whitespace-nowrap">内容审核</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors mx-2 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-2xl" href="#">
+<span class="material-symbols-outlined" data-icon="report">report</span>
+<span class="whitespace-nowrap">举报处理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors mx-2 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-2xl" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="whitespace-nowrap">用户管理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors mx-2 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-2xl" href="#">
+<span class="material-symbols-outlined" data-icon="pets">pets</span>
+<span class="whitespace-nowrap">宠物管理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors mx-2 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-2xl" href="#">
+<span class="material-symbols-outlined" data-icon="gpp_bad">gpp_bad</span>
+<span class="whitespace-nowrap">风控记录</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-emerald-900 dark:text-emerald-400 font-semibold bg-emerald-100/50 dark:bg-emerald-900/30 rounded-2xl mx-2 scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="whitespace-nowrap">基础配置</span>
+</a>
+</nav>
+<div class="px-6 py-4 mt-auto">
+<div class="bg-emerald-900/5 rounded-2xl p-4 flex items-center gap-3 border border-emerald-100/20">
+<img alt="Admin Avatar" class="w-10 h-10 rounded-full bg-emerald-200" data-alt="Administrator user profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1IVLrK1H8B6aoqNmgCnW5wRZRT2TCTFpsiJY39L-MBrHSlmbAPTMMUeJd44j1RvtyHR5Ru-hhiaOHk4cDeyc562LHw6VZ9MA9r3IOIDFCXSNinuOAHSTmV2PjTLvQV7AGBar-34wDgRufgwdZubZHybf_2dEQnwo9fGWO5BC7Vp1JSciY9KkFDSTzQgKq0UhDHqkUEhZSQM3JIdl5EQqdl0pWRgXfCJrTKSeoThc7tNn3Kw3vX5yEvBW9-czcCdyzs56zGkGo6Wne"/>
+<div class="overflow-hidden">
+<p class="text-xs font-bold text-emerald-900 truncate">Admin_Root</p>
+<p class="text-[10px] text-emerald-700/60">高级系统管理员</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-18rem)] h-16 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-emerald-50 dark:border-slate-800 shadow-sm shadow-emerald-900/5 flex justify-between items-center px-8">
+<div class="flex items-center gap-2">
+<span class="text-xs font-medium text-slate-400">设置 /</span>
+<span class="text-sm font-bold text-emerald-800">基础配置 3.0</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative flex items-center bg-slate-100 rounded-full px-4 py-1.5 focus-within:ring-2 ring-emerald-500/20 transition-all">
+<span class="material-symbols-outlined text-slate-400 text-lg" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 placeholder:text-slate-400" placeholder="搜索配置项..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="hover:bg-emerald-50 dark:hover:bg-slate-800 rounded-full p-2 transition-all active:opacity-70">
+<span class="material-symbols-outlined text-slate-500" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:bg-emerald-50 dark:hover:bg-slate-800 rounded-full p-2 transition-all active:opacity-70">
+<span class="material-symbols-outlined text-slate-500" data-icon="help">help</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-72 mt-16 p-8 min-h-screen">
+<!-- Page Header -->
+<div class="mb-10 flex justify-between items-end">
+<div>
+<h2 class="text-2xl font-bold text-slate-900 tracking-tight">基础配置 <span class="text-emerald-600 font-medium">v3.0</span></h2>
+<p class="text-slate-500 text-sm mt-1">全局策略与系统底层安全控制中心</p>
+</div>
+<div class="flex gap-3">
+<button class="px-5 py-2.5 text-sm font-semibold text-emerald-800 bg-emerald-50 rounded-2xl hover:bg-emerald-100 transition-all active:scale-95">重置默认</button>
+<button class="px-5 py-2.5 text-sm font-semibold text-white bg-primary rounded-2xl shadow-lg shadow-emerald-900/10 hover:brightness-110 transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="save">save</span> 保存更改
+                </button>
+</div>
+</div>
+<!-- Bento Grid Config Layout -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Group 1: Visibility & Privacy -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container-lowest rounded-2xl p-6 shadow-sm flex flex-col gap-6">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</div>
+<h3 class="text-base font-bold text-slate-800">权限与可见性</h3>
+</div>
+<div class="space-y-4">
+<!-- Community Visibility -->
+<div class="flex items-center justify-between p-3 bg-slate-50 rounded-2xl">
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-slate-700">社区默认可见性</span>
+<span class="text-[10px] text-slate-400">新建小组的初始访问权限</span>
+</div>
+<div class="flex bg-white p-1 rounded-xl shadow-inner border border-slate-100">
+<button class="px-4 py-1.5 text-xs font-bold bg-primary text-white rounded-lg whitespace-nowrap">公开</button>
+<button class="px-4 py-1.5 text-xs font-semibold text-slate-500 hover:text-emerald-700 rounded-lg whitespace-nowrap">私密</button>
+</div>
+</div>
+<!-- DM Rules -->
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 px-1 uppercase tracking-wider">私聊交流规则</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="flex flex-col items-center gap-2 p-3 bg-white border border-emerald-100 rounded-2xl shadow-sm">
+<span class="material-symbols-outlined text-emerald-600" data-icon="groups">groups</span>
+<span class="text-xs font-bold text-emerald-900 whitespace-nowrap">全员</span>
+</button>
+<button class="flex flex-col items-center gap-2 p-3 bg-slate-50 border border-transparent rounded-2xl hover:border-emerald-200 transition-all">
+<span class="material-symbols-outlined text-slate-400" data-icon="person_add">person_add</span>
+<span class="text-xs font-semibold text-slate-600 whitespace-nowrap">仅互粉</span>
+</button>
+<button class="flex flex-col items-center gap-2 p-3 bg-slate-50 border border-transparent rounded-2xl hover:border-emerald-200 transition-all">
+<span class="material-symbols-outlined text-slate-400" data-icon="do_not_disturb_on">do_not_disturb_on</span>
+<span class="text-xs font-semibold text-slate-600 whitespace-nowrap">关闭</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 2: Content Audit -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-2xl p-6 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+</div>
+<h3 class="text-base font-bold text-slate-800">内容安全与审核模式</h3>
+</div>
+<span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full border border-primary/10">智能防护开启中</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-4">
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider">审核模式选择</label>
+<div class="space-y-2">
+<label class="flex items-center p-3 bg-slate-50 rounded-2xl border-2 border-transparent hover:border-emerald-200 cursor-pointer transition-all">
+<input checked="" class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="audit" type="radio"/>
+<div class="ml-4">
+<p class="text-sm font-bold text-slate-700">先审后发 (Strict)</p>
+<p class="text-[10px] text-slate-400">所有内容需管理员手动通过</p>
+</div>
+</label>
+<label class="flex items-center p-3 bg-slate-50 rounded-2xl border-2 border-transparent hover:border-emerald-200 cursor-pointer transition-all">
+<input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="audit" type="radio"/>
+<div class="ml-4">
+<p class="text-sm font-bold text-slate-700">先发后审 (Post-audit)</p>
+<p class="text-[10px] text-slate-400">实时发布，违规后再清理</p>
+</div>
+</label>
+<label class="flex items-center p-3 bg-emerald-50/50 rounded-2xl border-2 border-emerald-500/30 cursor-pointer">
+<input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="audit" type="radio"/>
+<div class="ml-4">
+<p class="text-sm font-bold text-emerald-900">智能免审 (AI-Boost)</p>
+<p class="text-[10px] text-emerald-700/60">信誉用户自动豁免，AI实时扫描</p>
+</div>
+</label>
+</div>
+</div>
+</div>
+<div class="space-y-4 bg-slate-50/50 p-4 rounded-2xl border border-slate-100">
+<h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">评论过滤增强</h4>
+<div class="space-y-5 mt-4">
+<div class="flex flex-col gap-2">
+<div class="flex justify-between">
+<span class="text-xs font-semibold text-slate-600">关键词库更新频率</span>
+<span class="text-xs font-bold text-emerald-600">每12小时</span>
+</div>
+<select class="w-full bg-white border-slate-200 rounded-xl text-sm py-2 px-3 focus:border-primary focus:ring-primary/20 transition-all">
+<option>实时同步</option>
+<option selected="">每12小时</option>
+<option>每日更新</option>
+<option>每周更新</option>
+</select>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex justify-between">
+<span class="text-xs font-semibold text-slate-600">自动屏蔽阈值 (Score)</span>
+<span class="text-xs font-bold bg-emerald-900 text-white px-2 py-0.5 rounded-lg">85%</span>
+</div>
+<input class="w-full h-1.5 bg-emerald-100 rounded-lg appearance-none cursor-pointer accent-primary" max="100" min="0" type="range" value="85"/>
+<div class="flex justify-between text-[10px] text-slate-400 font-medium">
+<span>宽松 (50%)</span>
+<span>严苛 (95%)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 3: System Audit -->
+<div class="col-span-12 lg:col-span-6 bg-surface-container-lowest rounded-2xl p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<div class="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</div>
+<h3 class="text-base font-bold text-slate-800">系统审计策略</h3>
+</div>
+<div class="p-5 bg-slate-900 rounded-2xl text-emerald-400 flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<span class="text-xs font-medium text-emerald-400/70">日志保留天数</span>
+<span class="text-2xl font-bold text-white">180 <span class="text-xs font-normal opacity-50">DAYS</span></span>
+</div>
+<input class="w-full h-2 bg-emerald-900/50 rounded-lg appearance-none cursor-pointer" max="365" min="30" type="range" value="180"/>
+<div class="flex justify-between text-[10px] font-mono opacity-50">
+<span>30d</span>
+<span>90d</span>
+<span>180d</span>
+<span>270d</span>
+<span>365d</span>
+</div>
+<p class="text-[10px] text-emerald-400/40 italic">* 超过期限的日志将被自动归档至冷存储。符合GDPR合规性标准。</p>
+</div>
+</div>
+<!-- Group 4: Operations & Sync -->
+<div class="col-span-12 lg:col-span-6 bg-surface-container-lowest rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-3 mb-6">
+<div class="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
+<span class="material-symbols-outlined" data-icon="sync_alt">sync_alt</span>
+</div>
+<h3 class="text-base font-bold text-slate-800">操作记录与同步状态</h3>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100/50">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-slate-200">
+<span class="material-symbols-outlined text-slate-400" data-icon="schedule">schedule</span>
+</div>
+<div>
+<p class="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">最后同步时间</p>
+<p class="text-sm font-bold text-slate-700">2023-10-24 14:22:09</p>
+</div>
+</div>
+<span class="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded-lg uppercase">Success</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100/50">
+<div class="flex items-center gap-4">
+<img alt="Last Modified By" class="w-10 h-10 rounded-full bg-emerald-200" data-alt="Avatar of the user who last edited settings" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHEZ-WBom1-yA_K1EuqWlC8s7CozccahENgHntag8xnuVy0nr3B5FHxO6kb8E2W6-OVHBRIwhNGHUTjpWRKIGNH5ME2a4g00jq7ldSHk_oWBodPNQsOAQPPOAZG5i8jEVbB16JzJ0tn-zh-DY2bTzCuIREFTEeFlQXWuunxhYD4M0fsaGE1_HSUm_25Hi480e-fdyn6Y49VgrSiG4-JQwIIpIHRAMPKrzW_LDJ-IxT3IL_Eoxo1BtRIFOvGnqUJZUBhPrr9vGNcVA0"/>
+<div>
+<p class="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">最近修改人</p>
+<p class="text-sm font-bold text-slate-700">Zhang.Y (Senior Ops)</p>
+</div>
+</div>
+<button class="text-emerald-600 hover:text-emerald-800 transition-colors">
+<span class="material-symbols-outlined" data-icon="open_in_new">open_in_new</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-4 flex gap-2">
+<button class="flex-1 py-2 text-xs font-bold text-slate-400 hover:text-emerald-600 border border-slate-200 rounded-xl transition-all">查看完整变更审计日志</button>
+</div>
+</div>
+<!-- Compact List for Other Minor Settings -->
+<div class="col-span-12 bg-white/40 border border-white p-6 rounded-2xl">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="flex items-center gap-4 px-4 py-2 bg-white rounded-xl shadow-sm border border-emerald-50">
+<span class="material-symbols-outlined text-emerald-500" data-icon="database">database</span>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-slate-400">数据库状态</span>
+<span class="text-xs font-bold text-slate-800 whitespace-nowrap">正常 (集群运行中)</span>
+</div>
+</div>
+<div class="flex items-center gap-4 px-4 py-2 bg-white rounded-xl shadow-sm border border-emerald-50">
+<span class="material-symbols-outlined text-emerald-500" data-icon="mail">mail</span>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-slate-400">邮件通知服务器</span>
+<span class="text-xs font-bold text-slate-800 whitespace-nowrap">SMTP 已连接</span>
+</div>
+</div>
+<div class="flex items-center gap-4 px-4 py-2 bg-white rounded-xl shadow-sm border border-emerald-50">
+<span class="material-symbols-outlined text-emerald-500" data-icon="language">language</span>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-slate-400">CDN 缓存加速</span>
+<span class="text-xs font-bold text-slate-800 whitespace-nowrap">亚太区全量加速</span>
+</div>
+</div>
+<div class="flex items-center gap-4 px-4 py-2 bg-white rounded-xl shadow-sm border border-emerald-50">
+<span class="material-symbols-outlined text-emerald-500" data-icon="shield">shield</span>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-slate-400">安全加密级别</span>
+<span class="text-xs font-bold text-slate-800 whitespace-nowrap">AES-256-GCM</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- FAB for Quick Actions - Re-evaluated for "Settings" page and suppressed per mandate, but adding a "Quick Help" small button as a replacement if needed -->
+</main>
+<!-- Footer for subtle breathing room -->
+<footer class="ml-72 p-8 text-center">
+<p class="text-[10px] text-slate-400 font-medium tracking-widest uppercase">PetAdmin Infrastructure Control Panel • Version 3.0.4 • © 2023</p>
+</footer>
+</body></html>

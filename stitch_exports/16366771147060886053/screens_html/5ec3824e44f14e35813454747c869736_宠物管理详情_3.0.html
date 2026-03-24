@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-dim": "#d0d5d8",
+                        "error-dim": "#9f0519",
+                        "surface": "#f5f7f9",
+                        "on-secondary-fixed-variant": "#00675c",
+                        "primary-fixed-dim": "#56e6bf",
+                        "primary-container": "#67f4cd",
+                        "surface-variant": "#d9dde0",
+                        "on-tertiary-container": "#004051",
+                        "surface-container-highest": "#d9dde0",
+                        "tertiary-fixed-dim": "#00c0ec",
+                        "tertiary": "#00647c",
+                        "secondary-fixed": "#47fce4",
+                        "on-surface-variant": "#595c5e",
+                        "on-secondary": "#c0fff3",
+                        "outline": "#747779",
+                        "on-primary-fixed-variant": "#00644f",
+                        "inverse-primary": "#70fdd5",
+                        "secondary-dim": "#005a50",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#00675c",
+                        "on-error": "#ffefee",
+                        "error": "#b31b25",
+                        "surface-bright": "#f5f7f9",
+                        "secondary-container": "#47fce4",
+                        "primary-dim": "#005b48",
+                        "background": "#f5f7f9",
+                        "inverse-surface": "#0b0f10",
+                        "on-error-container": "#570008",
+                        "inverse-on-surface": "#9a9d9f",
+                        "tertiary-dim": "#00576d",
+                        "error-container": "#fb5151",
+                        "on-surface": "#2c2f31",
+                        "on-primary-fixed": "#004536",
+                        "on-secondary-container": "#005c52",
+                        "surface-container-high": "#dfe3e6",
+                        "primary-fixed": "#67f4cd",
+                        "tertiary-container": "#00cefe",
+                        "on-secondary-fixed": "#004840",
+                        "tertiary-fixed": "#00cefe",
+                        "on-tertiary-fixed": "#002935",
+                        "primary": "#006853",
+                        "outline-variant": "#abadaf",
+                        "on-primary-container": "#005947",
+                        "on-tertiary-fixed-variant": "#004a5d",
+                        "surface-tint": "#006853",
+                        "secondary-fixed-dim": "#2dedd6",
+                        "surface-container-low": "#eef1f3",
+                        "on-tertiary": "#e2f6ff",
+                        "on-background": "#2c2f31",
+                        "surface-container": "#e5e9eb",
+                        "on-primary": "#c5ffe9"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-wrap { white-space: nowrap; }
+        .glass-header { backdrop-filter: blur(20px); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-40 bg-slate-50/80 backdrop-blur-xl border-b border-emerald-900/5 shadow-sm">
+<div class="flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-emerald-900 tracking-tight no-wrap">PetAdmin Pro</span>
+<!-- Breadcrumbs -->
+<nav class="hidden md:flex items-center gap-2 text-sm font-medium text-slate-500">
+<span class="hover:text-primary transition-colors cursor-pointer no-wrap">首页</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="hover:text-primary transition-colors cursor-pointer no-wrap">宠物管理</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-emerald-700 font-semibold no-wrap">宠物详情</span>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="material-symbols-outlined p-2 text-slate-500 hover:bg-emerald-50/50 rounded-full transition-colors cursor-pointer">notifications</div>
+<div class="material-symbols-outlined p-2 text-slate-500 hover:bg-emerald-50/50 rounded-full transition-colors cursor-pointer">settings</div>
+<img class="w-8 h-8 rounded-full border border-emerald-900/10" data-alt="Administrator profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFH_Qi9OEt_bALjiiRWuSpTkFdak0tavPO38FwRcpdLnpcBKkyuivo_jLnmtOF1CVBSjqQhkZ0xDOfCsmykmB4u9d0xtNF5Gj0fZxq6H3ydWxWZDdOvJ9C7Kqbfxt2ayZbjoR0d_1mdQqAzdSgrLkpDxuRpx__d3tBKXTHqF1NSryNcMCYS7fL70JC3ZP2LZboBeaRrFsCnm1ZH5uFBHSnP-NfAdLhL6JJ7nXbYjRcHNBuhLY1G4h8b5u2Sc9lVjYqXXpc0oSb7UHh"/>
+</div>
+</div>
+</header>
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-white border-r-0 flex flex-col p-4 pt-20 hidden md:flex">
+<div class="mb-8 px-2">
+<h2 class="text-lg font-bold text-emerald-900 no-wrap">Management</h2>
+<p class="text-[0.875rem] text-slate-600 no-wrap">Pet Community Console</p>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-xl transition-all duration-200 cursor-pointer group">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">dashboard</span>
+<span class="text-[0.875rem] no-wrap">Dashboard</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-xl transition-all duration-200 cursor-pointer group">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">group</span>
+<span class="text-[0.875rem] no-wrap">Members</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 bg-emerald-50 text-emerald-800 font-bold rounded-xl transition-all duration-200 cursor-pointer group">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">pets</span>
+<span class="text-[0.875rem] no-wrap">Pet Registry</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-xl transition-all duration-200 cursor-pointer group">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">favorite</span>
+<span class="text-[0.875rem] no-wrap">Adoptions</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-xl transition-all duration-200 cursor-pointer group">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">medical_services</span>
+<span class="text-[0.875rem] no-wrap">Health Logs</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-xl transition-all duration-200 cursor-pointer group">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">forum</span>
+<span class="text-[0.875rem] no-wrap">Community</span>
+</div>
+</nav>
+<div class="pt-4 border-t border-slate-100 space-y-1">
+<div class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-xl transition-all cursor-pointer">
+<span class="material-symbols-outlined">help</span>
+<span class="text-[0.875rem] no-wrap">Support</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-xl transition-all cursor-pointer">
+<span class="material-symbols-outlined text-error">logout</span>
+<span class="text-[0.875rem] no-wrap">Logout</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="pt-24 pb-12 pl-4 pr-4 md:pl-72 md:pr-8 max-w-[1600px] mx-auto">
+<!-- Header Actions Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+<div>
+<h1 class="text-3xl font-extrabold text-emerald-900 tracking-tight no-wrap">大福 的档案详情</h1>
+<p class="text-slate-500 mt-1 no-wrap">档案 ID: PET-20240502-8892</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-5 py-2.5 rounded-full bg-surface-container-low text-emerald-900 font-semibold text-sm hover:bg-surface-container-high transition-colors flex items-center gap-2 no-wrap active:scale-95">
+<span class="material-symbols-outlined text-lg">edit</span>
+                    编辑资料
+                </button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container-low text-emerald-900 font-semibold text-sm hover:bg-surface-container-high transition-colors flex items-center gap-2 no-wrap active:scale-95">
+<span class="material-symbols-outlined text-lg">swap_horiz</span>
+                    变更主人
+                </button>
+<button class="px-5 py-2.5 rounded-full bg-error/10 text-error font-semibold text-sm hover:bg-error/20 transition-colors flex items-center gap-2 no-wrap active:scale-95">
+<span class="material-symbols-outlined text-lg">delete_forever</span>
+                    注销档案
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-6">
+<!-- Bento Grid Left: Core Info -->
+<div class="col-span-12 lg:col-span-8 space-y-6">
+<!-- Main Identity Card -->
+<div class="bg-surface-container-lowest rounded-xl p-8 flex flex-col md:flex-row items-center md:items-start gap-8 border border-emerald-900/5">
+<div class="relative group">
+<img class="w-40 h-40 rounded-xl object-cover shadow-xl border-4 border-white" data-alt="Golden Retriever portrait named Dafu" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCqzvsZyY8oIMsgMUsS1QvryFNGrz2nqT-usX1IBZKa0UX9hU_-R8uinv1ESfNG_EcSGYxBBnGSXDUDLFd8-UH51O5aqLeaVZ9NqQNOJ-SyGCDLUF_Jj_dL1S8Yd0ZFNbn0w3DeQ5HNTTenwcSqgxvvjLfg1kCf2DcQzizFMX4kziF3SHk8C4buJkYh0jf24xy1IbFhi9tI_f5mAjphPoKVrJ1Y7qVWtf3NDSr5brPJhpa1GMhYsHayIe2e6VLTk8oZnPtNN_4BcWv"/>
+<div class="absolute -bottom-2 -right-2 bg-primary-container text-on-primary-container p-2 rounded-lg shadow-lg">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="flex-1 grid grid-cols-2 md:grid-cols-3 gap-y-6 gap-x-4">
+<div class="col-span-2 md:col-span-3 pb-2 border-b border-slate-50">
+<h2 class="text-2xl font-bold text-emerald-900 no-wrap">大福 (Dafu)</h2>
+<p class="text-primary font-medium no-wrap">金毛寻回犬 • Golden Retriever</p>
+</div>
+<div>
+<p class="text-xs text-slate-400 font-medium uppercase no-wrap">性别</p>
+<p class="text-lg font-semibold text-emerald-900 flex items-center gap-1 no-wrap">
+<span class="material-symbols-outlined text-blue-500 text-base">male</span> 雄性
+                            </p>
+</div>
+<div>
+<p class="text-xs text-slate-400 font-medium uppercase no-wrap">年龄</p>
+<p class="text-lg font-semibold text-emerald-900 no-wrap">2 岁 4 个月</p>
+</div>
+<div>
+<p class="text-xs text-slate-400 font-medium uppercase no-wrap">体重</p>
+<p class="text-lg font-semibold text-emerald-900 no-wrap">32.5 kg</p>
+</div>
+<div>
+<p class="text-xs text-slate-400 font-medium uppercase no-wrap">毛色</p>
+<p class="text-lg font-semibold text-emerald-900 no-wrap">奶油金</p>
+</div>
+<div>
+<p class="text-xs text-slate-400 font-medium uppercase no-wrap">生日</p>
+<p class="text-lg font-semibold text-emerald-900 no-wrap">2022-01-15</p>
+</div>
+<div>
+<p class="text-xs text-slate-400 font-medium uppercase no-wrap">芯片号</p>
+<p class="text-lg font-semibold text-emerald-900 no-wrap">#900215000</p>
+</div>
+</div>
+</div>
+<!-- Timeline / Records Section -->
+<div class="bg-surface-container-lowest rounded-xl p-8 border border-emerald-900/5">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-xl font-bold text-emerald-900 flex items-center gap-2 no-wrap">
+<span class="material-symbols-outlined text-primary">history_edu</span>
+                            动态与健康记录
+                        </h3>
+<button class="text-primary font-semibold text-sm hover:underline no-wrap">查看全部</button>
+</div>
+<div class="relative pl-8 space-y-8 before:content-[''] before:absolute before:left-3 before:top-2 before:bottom-2 before:w-0.5 before:bg-emerald-50">
+<!-- Record 1 -->
+<div class="relative">
+<div class="absolute -left-[26px] top-1 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white shadow-sm ring-4 ring-emerald-50"></div>
+<div class="bg-surface-container-low/50 rounded-xl p-4">
+<div class="flex items-center justify-between mb-2">
+<span class="px-3 py-1 rounded-full bg-primary-container/30 text-primary text-xs font-bold no-wrap">疫苗接种</span>
+<span class="text-xs text-slate-400 font-medium no-wrap">2024-04-12 14:30</span>
+</div>
+<h4 class="font-bold text-emerald-900 no-wrap">接种 狂犬病疫苗 (Rabies)</h4>
+<p class="text-sm text-slate-600 mt-1 no-wrap">接种点：中心宠物医院。下次接种时间：2025-04-12</p>
+</div>
+</div>
+<!-- Record 2 -->
+<div class="relative">
+<div class="absolute -left-[26px] top-1 w-4 h-4 rounded-full bg-amber-400 border-4 border-white shadow-sm ring-4 ring-amber-50"></div>
+<div class="bg-surface-container-low/50 rounded-xl p-4">
+<div class="flex items-center justify-between mb-2">
+<span class="px-3 py-1 rounded-full bg-amber-100 text-amber-700 text-xs font-bold no-wrap">驱虫记录</span>
+<span class="text-xs text-slate-400 font-medium no-wrap">2024-03-20 09:15</span>
+</div>
+<h4 class="font-bold text-emerald-900 no-wrap">体内外一体驱虫 (NexGard Spectra)</h4>
+<p class="text-sm text-slate-600 mt-1 no-wrap">状态：已完成。建议每月定期进行驱虫处理。</p>
+</div>
+</div>
+<!-- Record 3 -->
+<div class="relative">
+<div class="absolute -left-[26px] top-1 w-4 h-4 rounded-full bg-blue-400 border-4 border-white shadow-sm ring-4 ring-blue-50"></div>
+<div class="bg-surface-container-low/50 rounded-xl p-4">
+<div class="flex items-center justify-between mb-2">
+<span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold no-wrap">社区动态</span>
+<span class="text-xs text-slate-400 font-medium no-wrap">2024-03-15 18:45</span>
+</div>
+<h4 class="font-bold text-emerald-900 no-wrap">发布了新动态：今天大福在草坪玩得很开心！</h4>
+<div class="mt-3 flex gap-2">
+<img class="w-16 h-16 rounded-lg object-cover" data-alt="Golden Retriever playing in grass" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdmfDtwlymxP7bMDUgavHwGaZkv8kj541juh5oSuzH3ejtv4T88PfcebjtMKzEUxX6pJAknl8KKaJYUZTiA-34_EWffdTiM1XNt_rmG4QthFrAYojOhx7-WWYEnfg6MOydGTn3owIA6ahy2IDfRwcBdkRpw3RWmCNVcmkvlQAmvaT_yLe_KU1do4Qct_oCJH_H8qqRTkVpFH-W5g3g0LRqwA-jQVq7Tk1HcNym5N2rTrtq5RauzibNXqwNCr0_tNj9q60bQ88yMNLs"/>
+<img class="w-16 h-16 rounded-lg object-cover" data-alt="Happy dog jumping" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_4MIUrZ0oeZtELLNLfXJ3uFfNHlyFEswUWVyGS5tQdoAr-zGMa37rI_byiMow9YxjHgxfT9oYPp7Jqere1DL0izaFnkqcuyUGE1vVmz0XAjrr59QmJHwl9XDeHdT-JjqSAHGO5tN3WQGoINmK6226V9Movgyg0nB1Dsa5j7jnDnfyIOtMaI6uec_wA4FuLmALASthIDemqdRa2PdwORNAAlUMsyiFSI22PWWw2SGVcynDF3GTxtLeg85Z8ftEbFmZC12e0tHx-KDI"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Grid Right: Sidebar Info -->
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<!-- Owner Info Card -->
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-emerald-900/5">
+<h3 class="text-lg font-bold text-emerald-900 mb-6 flex items-center gap-2 no-wrap">
+<span class="material-symbols-outlined text-primary">person_check</span>
+                        主人信息
+                    </h3>
+<div class="flex items-center gap-4 mb-6">
+<img class="w-14 h-14 rounded-full border-2 border-emerald-50" data-alt="Owner profile picture Ming" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsPdzBwdCrNhRg-tgW5XUswldmxQGvCgqY_PokahRJgQzp8fCl_bHl-fQYa7u7sqSl5xxudm0CBWUCOy8veHQolhmf2M2P_M17SuomH1zM-d66n-FdnJWBp9s3Xmty6hybohv9dPFBCYwRTh72_FMOceglw4wl4S4gl7bYlxzclsOdbeFgjWd7QDeigOosCIH3jabWxS-AgOYteioTngCd-uzlytYd3D_aWTZ8EjKmxZAsmWoTOio5llxDCDGIKDQV3T3l6wBL33aW"/>
+<div>
+<p class="font-bold text-emerald-900 text-lg no-wrap">王嘉明 (Ming)</p>
+<p class="text-slate-500 text-sm no-wrap">高级会员 • 资深宠主</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between py-2">
+<span class="text-slate-500 text-sm no-wrap">手机号</span>
+<span class="text-emerald-900 font-semibold no-wrap">138 **** 9928</span>
+</div>
+<div class="flex items-center justify-between py-2">
+<span class="text-slate-500 text-sm no-wrap">注册时间</span>
+<span class="text-emerald-900 font-semibold no-wrap">2022-05-12</span>
+</div>
+<div class="flex items-center justify-between py-2">
+<span class="text-slate-500 text-sm no-wrap">居住地区</span>
+<span class="text-emerald-900 font-semibold no-wrap">上海市 静安区</span>
+</div>
+</div>
+<button class="w-full mt-6 py-3 rounded-xl bg-primary text-on-primary font-bold transition-all hover:bg-primary-dim active:scale-[0.98] no-wrap">
+                        联系主人
+                    </button>
+</div>
+<!-- Status & Visibility Card -->
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-emerald-900/5">
+<h3 class="text-lg font-bold text-emerald-900 mb-6 flex items-center gap-2 no-wrap">
+<span class="material-symbols-outlined text-primary">visibility</span>
+                        档案状态
+                    </h3>
+<div class="space-y-6">
+<div>
+<p class="text-xs text-slate-400 font-medium uppercase mb-3 no-wrap">可见性设置</p>
+<div class="flex gap-2">
+<button class="flex-1 py-2 px-3 rounded-lg border border-emerald-500 bg-emerald-50 text-emerald-700 text-xs font-bold no-wrap">公开</button>
+<button class="flex-1 py-2 px-3 rounded-lg border border-slate-100 text-slate-400 text-xs font-medium no-wrap">私密</button>
+<button class="flex-1 py-2 px-3 rounded-lg border border-slate-100 text-slate-400 text-xs font-medium no-wrap">仅好友</button>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-emerald-50/50 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-emerald-600">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div>
+<p class="font-bold text-emerald-900 text-sm no-wrap">审核状态</p>
+<p class="text-emerald-600 text-xs no-wrap">已通过官方认证</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-emerald-300">check_circle</span>
+</div>
+</div>
+</div>
+<!-- Pet Statistics -->
+<div class="bg-gradient-to-br from-primary to-primary-dim rounded-xl p-6 text-on-primary">
+<h3 class="font-bold mb-4 no-wrap">社区影响力</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-white/10 rounded-xl p-3 backdrop-blur-md">
+<p class="text-[10px] uppercase opacity-80 no-wrap">累计获赞</p>
+<p class="text-2xl font-black no-wrap">2.4k</p>
+</div>
+<div class="bg-white/10 rounded-xl p-3 backdrop-blur-md">
+<p class="text-[10px] uppercase opacity-80 no-wrap">档案浏览</p>
+<p class="text-2xl font-black no-wrap">12.8k</p>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-2 text-xs opacity-90 no-wrap">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                        近 30 天关注度提升 15%
+                    </div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button for Mobile -->
+<div class="md:hidden fixed bottom-6 right-6 z-50">
+<button class="w-14 h-14 rounded-full bg-primary text-on-primary shadow-2xl flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</body></html>

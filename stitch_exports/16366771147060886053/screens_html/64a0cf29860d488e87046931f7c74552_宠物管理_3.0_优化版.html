@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>宠社管理系统 v3.0 专业版</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-variant": "#d9dde0",
+                        "error": "#b31b25",
+                        "primary-container": "#67f4cd",
+                        "background": "#f5f7f9",
+                        "tertiary-container": "#00cefe",
+                        "tertiary": "#00647c",
+                        "inverse-primary": "#70fdd5",
+                        "outline-variant": "#abadaf",
+                        "on-secondary-container": "#005c52",
+                        "surface": "#f5f7f9",
+                        "primary-fixed-dim": "#56e6bf",
+                        "on-tertiary-fixed-variant": "#004a5d",
+                        "secondary": "#00675c",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#47fce4",
+                        "on-primary-container": "#005947",
+                        "tertiary-fixed": "#00cefe",
+                        "error-dim": "#9f0519",
+                        "surface-bright": "#f5f7f9",
+                        "surface-dim": "#d0d5d8",
+                        "on-secondary-fixed": "#004840",
+                        "on-surface-variant": "#595c5e",
+                        "on-primary-fixed-variant": "#00644f",
+                        "primary": "#006853",
+                        "error-container": "#fb5151",
+                        "on-secondary-fixed-variant": "#00675c",
+                        "on-error-container": "#570008",
+                        "secondary-dim": "#005a50",
+                        "on-tertiary-fixed": "#002935",
+                        "on-error": "#ffefee",
+                        "inverse-surface": "#0b0f10",
+                        "surface-container-high": "#dfe3e6",
+                        "secondary-fixed": "#47fce4",
+                        "secondary-fixed-dim": "#2dedd6",
+                        "on-surface": "#2c2f31",
+                        "primary-dim": "#005b48",
+                        "outline": "#747779",
+                        "tertiary-dim": "#00576d",
+                        "on-tertiary": "#e2f6ff",
+                        "tertiary-fixed-dim": "#00c0ec",
+                        "on-tertiary-container": "#004051",
+                        "surface-container-highest": "#d9dde0",
+                        "surface-container-low": "#eef1f3",
+                        "on-primary-fixed": "#004536",
+                        "on-primary": "#c5ffe9",
+                        "surface-container": "#e5e9eb",
+                        "on-secondary": "#c0fff3",
+                        "on-background": "#2c2f31",
+                        "surface-tint": "#006853",
+                        "primary-fixed": "#67f4cd",
+                        "inverse-on-surface": "#9a9d9f"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', 'PingFang SC', sans-serif;
+            background-color: #f5f7f9;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .glass-header {
+            backdrop-filter: blur(20px);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        table {
+            border-collapse: separate;
+            border-spacing: 0 0.5rem;
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar (Execution from JSON) -->
+<aside class="fixed left-0 top-0 h-full z-40 flex flex-col p-4 bg-slate-50 dark:bg-slate-900 w-64 h-screen border-r-0 font-['Plus_Jakarta_Sans'] text-sm font-medium">
+<div class="mb-8 px-4 py-2">
+<h1 class="text-lg font-bold text-[#006853] dark:text-[#67f4cd]">宠社管理系统</h1>
+<p class="text-xs text-slate-400 font-normal mt-1">v3.0 专业版</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>概况统计</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+<span>内容审核</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="report">report</span>
+<span>举报处理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>用户管理</span>
+</a>
+<!-- Active State: 宠物管理 -->
+<a class="flex items-center gap-3 px-4 py-3 bg-[#67f4cd]/20 text-[#006853] dark:text-[#67f4cd] rounded-xl font-semibold scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="pets">pets</span>
+<span>宠物管理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span>风控中心</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-[#67f4cd]/10 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>基础配置</span>
+</a>
+</nav>
+<div class="mt-auto p-4 flex items-center gap-3 bg-surface-container-low rounded-xl">
+<img alt="Admin Avatar" class="w-8 h-8 rounded-full bg-primary-container" data-alt="Admin user profile illustration avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGBh6q324p51gqOQTuvUHKXk2WgizXNgceze4u9D7KBamB9iQOpUtmpir9FRQ09tesDIowvDb6zoGAneeqQeLwvfH8nxlVWMPyMwYp1qiY9Ov2OUZDX_L6QoxhaMUHiJkjRys9L1ppA4UshzQ1aucHOr8skIEIP4yoIc5-9v8o4-nqNQUdyvWa36iC4KZazCJX9CyJZ0UJOdqxAyd1vFCmOOHTF60bcpc7KpuqGTaYLHqRr9oXIhBpM6dP2cvbW0tn3_6n2RkCcXoZ"/>
+<div class="overflow-hidden">
+<p class="text-xs font-bold truncate">系统管理员</p>
+<p class="text-[10px] text-slate-400 truncate">Super Admin</p>
+</div>
+</div>
+</aside>
+<!-- TopNavBar (Execution from JSON) -->
+<header class="fixed top-0 right-0 left-64 h-16 flex items-center justify-between px-8 z-30 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800 shadow-sm dark:shadow-none font-['Plus_Jakarta_Sans'] text-sm">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 text-slate-400">
+<a class="hover:text-[#006853] transition-all" href="#">首页</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-[#006853] font-bold border-b-2 border-[#006853] pb-1">宠物管理</span>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-1.5 text-xs w-64 focus:ring-2 focus:ring-primary-container" placeholder="搜索宠物 ID 或名称..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-[#006853] transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-[#006853] transition-all">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-[#006853] transition-all">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-100 mx-2"></div>
+<img alt="User Profile" class="w-9 h-9 rounded-full ring-2 ring-primary-container/20" data-alt="Admin personal profile avatar circle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCodpP-3LAFdeVT5DxDPwcpnB_K_61SXtHhodAr1dOxqKji5dW4hIds0DgShn3MphEswTWkAAfVma2zoOZP4jQD1OHHR3-saPL8xC_cek9PvuwxLdGgQWYUOE19KiEp6w5tm8WYGrDunyKW5tmg8vibRkOUdJlH6cAj9p1mwmyaNHKp3c8LGNyXsKjuFeM890v9w6TceGlkh4VzrzRG1Iw_vbqLZD6ilPvrc_sYzzE4NQuWOnmppEd46MrUkf4PGMkbe4Jy5W73W2Gs"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-8 pb-12 min-h-screen">
+<!-- Header Section with FAB-like Action -->
+<div class="flex items-end justify-between mb-8">
+<div>
+<h2 class="text-3xl font-extrabold tracking-tight text-[#006853]">宠物档案库</h2>
+<p class="text-on-surface-variant mt-2 text-sm">管理社区中所有的活跃宠物档案及可见性权限</p>
+</div>
+<button class="flex items-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-full font-bold shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+<span>录入新宠物</span>
+</button>
+</div>
+<!-- Bento Stats (Quick Overview) -->
+<div class="grid grid-cols-4 gap-6 mb-10">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-transparent hover:border-primary-container transition-all">
+<p class="text-xs text-on-surface-variant font-medium mb-1">总宠物数</p>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-bold">1,284</span>
+<span class="text-[10px] text-[#006853] bg-primary-container/20 px-1.5 py-0.5 rounded-md">+12%</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-transparent hover:border-primary-container transition-all">
+<p class="text-xs text-on-surface-variant font-medium mb-1">今日新增</p>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-bold">42</span>
+<span class="text-[10px] text-[#006853] bg-primary-container/20 px-1.5 py-0.5 rounded-md">New</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-transparent hover:border-primary-container transition-all">
+<p class="text-xs text-on-surface-variant font-medium mb-1">公开档案</p>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-bold">85%</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-transparent hover:border-primary-container transition-all">
+<p class="text-xs text-on-surface-variant font-medium mb-1">异常上报</p>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-bold text-error">3</span>
+<span class="text-[10px] text-error bg-error-container/10 px-1.5 py-0.5 rounded-md">Wait</span>
+</div>
+</div>
+</div>
+<!-- Professional Table Section -->
+<div class="bg-surface-container-lowest rounded-xl p-2 shadow-sm">
+<div class="overflow-x-auto no-scrollbar">
+<table class="w-full text-left">
+<thead>
+<tr class="text-slate-400 text-[10px] uppercase tracking-wider font-bold">
+<th class="px-6 py-4 whitespace-nowrap">宠物 ID</th>
+<th class="px-6 py-4 whitespace-nowrap">宠物信息</th>
+<th class="px-6 py-4 whitespace-nowrap">品种</th>
+<th class="px-6 py-4 whitespace-nowrap">主人</th>
+<th class="px-6 py-4 whitespace-nowrap text-center">可见性</th>
+<th class="px-6 py-4 whitespace-nowrap">创建时间</th>
+<th class="px-6 py-4 whitespace-nowrap text-right">操作</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<!-- Row 1: 大福 -->
+<tr class="group hover:bg-surface-container-low transition-colors rounded-xl">
+<td class="px-6 py-4 whitespace-nowrap font-mono text-xs text-slate-500">PET-00284</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl overflow-hidden bg-primary-container/10">
+<img alt="Pet Avatar" class="w-full h-full object-cover" data-alt="Golden Retriever dog illustration avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsEE2lIc4onzddwAhGfg8wTRKC5GEEk3XlmH_bbIgqRPqDSkj3a71llitq5XA-A--72K8PFTxmXc9uUAkyTXC6P0cJL_UvKcckhIl2UBuk08lXkiZSkdu58F8iMyvaNbKSdajoxRx76w1-WFru8KwTnlkTEOf9G2BE80BJkDmbx4AcC6I0aFCGLpMzEhnNnpnCUTSfEAyW2GWaeevyALu7GGBW1lK-kw_7pESjSP_sVkv0DMahZEBqKdkkGTNmSGSuRjPJvrQug63b"/>
+</div>
+<span class="font-bold text-[#006853]">大福</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant">金毛犬</td>
+<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant">陈先生</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<span class="bg-primary-container/20 text-[#006853] px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">公开显示</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-400 text-xs">2023-11-20 14:22</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<button class="p-2 hover:bg-white rounded-lg text-slate-400 hover:text-primary transition-all">
+<span class="material-symbols-outlined">edit_square</span>
+</button>
+<button class="p-2 hover:bg-white rounded-lg text-slate-400 hover:text-error transition-all ml-1">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: 奶茶 -->
+<tr class="group hover:bg-surface-container-low transition-colors rounded-xl">
+<td class="px-6 py-4 whitespace-nowrap font-mono text-xs text-slate-500">PET-00312</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl overflow-hidden bg-primary-container/10">
+<img alt="Pet Avatar" class="w-full h-full object-cover" data-alt="British Shorthair cat illustration avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDKgFKWuiqm_nHEDz-VXlDxly3V6YNOwcE89nFqIkKCwpA9LZ94h9EeUalVkimxcEnhxvFlqxKznQ9pVfQ3fyGPEdbnT6wLbVNaE3H1f3ByvbvbZbA_3ziMxRZyTTS30-ncgMPpZdRWx4CWpmHawoY4DEhD3ahcvU7MbOtBSRjLLdT2GIciYkhuj6eHas8fy9MaNFeUCYDjLs9yeLNdLZOWn9U9epAxrVVtsS2bqqadQETNjbNYGXh9Bk8zAk11J6y0ERJoEPW0PYM"/>
+</div>
+<span class="font-bold text-[#006853]">奶茶</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant">英短蓝猫</td>
+<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant">李小姐</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<span class="bg-primary-container/20 text-[#006853] px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">公开显示</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-400 text-xs">2023-11-21 09:15</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<button class="p-2 hover:bg-white rounded-lg text-slate-400 hover:text-primary transition-all">
+<span class="material-symbols-outlined">edit_square</span>
+</button>
+<button class="p-2 hover:bg-white rounded-lg text-slate-400 hover:text-error transition-all ml-1">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: 丸子 -->
+<tr class="group hover:bg-surface-container-low transition-colors rounded-xl">
+<td class="px-6 py-4 whitespace-nowrap font-mono text-xs text-slate-500">PET-00451</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl overflow-hidden bg-primary-container/10">
+<img alt="Pet Avatar" class="w-full h-full object-cover" data-alt="French Bulldog illustration avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC453-C1v94pU6awx2nCI2CvcS_ArtCMOAxyRyX8JR6tm-75xPlSJMvPKo1pOHluYGvH7j4GmdoSypv8kcxg1eXmRgejxg6mMZc28oELcCKuSJKZ3IbqYaj6f47pTmlwe0NHbd14WUEWD5MiiUO_PmznfwAJUD7PPKCH5WX37GQqoEPic5LZcTwlCt7myTE6Nx7O54KfnJGvmLeY2GlSUpMna-h__8WNRrP9LgX8dAabSBRf7GLz99LG-7SZiYIxORD03JLMtrgePh8"/>
+</div>
+<span class="font-bold text-[#006853]">丸子</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant">法斗</td>
+<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant">周医生</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<span class="bg-slate-100 text-slate-500 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">私密档案</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-400 text-xs">2023-11-22 18:40</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<button class="p-2 hover:bg-white rounded-lg text-slate-400 hover:text-primary transition-all">
+<span class="material-symbols-outlined">edit_square</span>
+</button>
+<button class="p-2 hover:bg-white rounded-lg text-slate-400 hover:text-error transition-all ml-1">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: Ice -->
+<tr class="group hover:bg-surface-container-low transition-colors rounded-xl">
+<td class="px-6 py-4 whitespace-nowrap font-mono text-xs text-slate-500">PET-00512</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl overflow-hidden bg-primary-container/10">
+<img alt="Pet Avatar" class="w-full h-full object-cover" data-alt="Husky dog illustration avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHu9SMUlHh3unFo7H2HUC9CPHLtnOPXVc1DySbuRLZOtL1zpi2ndBYJ0mEasGsWWBerxWsaWqcBLeZ1odpkz9dXdIqmsZulCWtSWUS8LRJMlBMt4X9pPbDx8VHWVkbWI3bBLTP63cbNUCXz8E2UUWT8IQUE5Um6ipWXopTbhTKJE1cIO8DGS5WV_z0fC1FuVkzoRkGqMg49iLpQBvuUmhvRp3ssj2bk-AnvS_4gjX0pPknyIRWgg0kk6zM0tFe2yRb7TMOFvM2XFeD"/>
+</div>
+<span class="font-bold text-[#006853]">哈士奇 (Ice)</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant">西伯利亚雪橇犬</td>
+<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant">张教练</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<span class="bg-primary-container/20 text-[#006853] px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">公开显示</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-400 text-xs">2023-11-23 11:10</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<button class="p-2 hover:bg-white rounded-lg text-slate-400 hover:text-primary transition-all">
+<span class="material-symbols-outlined">edit_square</span>
+</button>
+<button class="p-2 hover:bg-white rounded-lg text-slate-400 hover:text-error transition-all ml-1">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination (Floating-style) -->
+<div class="flex items-center justify-between px-6 py-4 border-t border-slate-50 mt-2">
+<span class="text-[10px] font-bold text-slate-400 uppercase">Page 1 of 64</span>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded-lg border border-slate-100 text-slate-400 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-on-primary text-xs font-bold">1</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-low text-xs font-bold transition-all">2</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-low text-xs font-bold transition-all">3</button>
+<button class="p-1.5 rounded-lg border border-slate-100 text-slate-400 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Filter Bar (Floating context) -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-xl px-6 py-3 rounded-full shadow-2xl border border-primary-container/20 z-50 flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-[#006853]">filter_list</span>
+<span class="text-xs font-bold text-[#006853]">快速筛选:</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-3 py-1 bg-primary-container text-[#006853] text-[10px] font-bold rounded-full transition-all">全部</button>
+<button class="px-3 py-1 hover:bg-surface-container-low text-slate-500 text-[10px] font-bold rounded-full transition-all">公开</button>
+<button class="px-3 py-1 hover:bg-surface-container-low text-slate-500 text-[10px] font-bold rounded-full transition-all">私密</button>
+<button class="px-3 py-1 hover:bg-surface-container-low text-slate-500 text-[10px] font-bold rounded-full transition-all">待审</button>
+</div>
+<div class="w-[1px] h-4 bg-slate-200"></div>
+<button class="text-xs font-bold text-slate-500 hover:text-primary transition-all">清除条件</button>
+</div>
+</body></html>

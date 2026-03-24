@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PetAdmin 3.0 - 通用弹出框样式预览</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "background": "#f5f7f9",
+                        "tertiary": "#00647c",
+                        "surface": "#f5f7f9",
+                        "secondary-fixed-dim": "#2dedd6",
+                        "on-primary": "#c5ffe9",
+                        "inverse-on-surface": "#9a9d9f",
+                        "secondary-container": "#47fce4",
+                        "secondary": "#00675c",
+                        "on-surface": "#2c2f31",
+                        "surface-container": "#e5e9eb",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#004051",
+                        "on-primary-fixed-variant": "#00644f",
+                        "surface-container-high": "#dfe3e6",
+                        "on-tertiary": "#e2f6ff",
+                        "surface-variant": "#d9dde0",
+                        "primary-fixed-dim": "#56e6bf",
+                        "on-primary-container": "#005947",
+                        "inverse-primary": "#70fdd5",
+                        "secondary-fixed": "#47fce4",
+                        "primary-fixed": "#67f4cd",
+                        "inverse-surface": "#0b0f10",
+                        "surface-tint": "#006853",
+                        "on-secondary-fixed": "#004840",
+                        "on-tertiary-fixed": "#002935",
+                        "on-secondary": "#c0fff3",
+                        "primary": "#006853",
+                        "error": "#b31b25",
+                        "on-secondary-fixed-variant": "#00675c",
+                        "error-dim": "#9f0519",
+                        "tertiary-fixed": "#00cefe",
+                        "tertiary-container": "#00cefe",
+                        "outline": "#747779",
+                        "on-error-container": "#570008",
+                        "on-error": "#ffefee",
+                        "on-secondary-container": "#005c52",
+                        "surface-bright": "#f5f7f9",
+                        "surface-container-highest": "#d9dde0",
+                        "on-tertiary-fixed-variant": "#004a5d",
+                        "primary-container": "#67f4cd",
+                        "on-background": "#2c2f31",
+                        "tertiary-dim": "#00576d",
+                        "on-surface-variant": "#595c5e",
+                        "surface-dim": "#d0d5d8",
+                        "surface-container-low": "#eef1f3",
+                        "on-primary-fixed": "#004536",
+                        "primary-dim": "#005b48",
+                        "outline-variant": "#abadaf",
+                        "secondary-dim": "#005a50",
+                        "error-container": "#fb5151",
+                        "tertiary-fixed-dim": "#00c0ec"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans", "PingFang SC", "Microsoft YaHei UI"],
+                        "body": ["Plus Jakarta Sans", "PingFang SC", "Microsoft YaHei UI"],
+                        "label": ["Plus Jakarta Sans", "PingFang SC", "Microsoft YaHei UI"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "3xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased min-h-screen">
+<!-- SideNavBar -->
+<aside class="w-72 h-screen fixed left-0 top-0 border-r-0 bg-slate-50 dark:bg-slate-900 font-['Plus_Jakarta_Sans'] antialiased py-6 flex flex-col gap-2 z-50">
+<div class="px-6 mb-8">
+<h1 class="text-xl font-bold text-emerald-900 dark:text-emerald-50">PetAdmin 3.0</h1>
+<p class="text-xs text-slate-500 mt-1">薄荷鲜氧专业主义</p>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors mx-2 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-2xl" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium">概览</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-emerald-900 dark:text-emerald-400 font-semibold bg-emerald-100/50 dark:bg-emerald-900/30 rounded-2xl mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+<span class="font-medium">内容审核</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors mx-2 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-2xl" href="#">
+<span class="material-symbols-outlined" data-icon="report">report</span>
+<span class="font-medium">举报处理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors mx-2 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-2xl" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-medium">用户管理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors mx-2 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-2xl" href="#">
+<span class="material-symbols-outlined" data-icon="pets">pets</span>
+<span class="font-medium">宠物管理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors mx-2 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-2xl" href="#">
+<span class="material-symbols-outlined" data-icon="gpp_bad">gpp_bad</span>
+<span class="font-medium">风控记录</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors mx-2 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-2xl" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-medium">基础配置</span>
+</a>
+</nav>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-18rem)] h-16 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-emerald-50 dark:border-slate-800 shadow-sm shadow-emerald-900/5 flex justify-between items-center px-8">
+<div class="flex items-center gap-4 text-slate-400">
+<span class="text-sm font-medium">组件库 / 弹窗预览</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-2">
+<button class="hover:bg-emerald-50 dark:hover:bg-slate-800 rounded-full p-2 transition-all text-slate-500">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:bg-emerald-50 dark:hover:bg-slate-800 rounded-full p-2 transition-all text-slate-500">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-slate-100">
+<img alt="Administrator Avatar" class="w-8 h-8 rounded-full bg-emerald-100" data-alt="Administrator user profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw9YJK7qi0UMVW8dI2uTDxtmZf2gcqPsCgwfCOsi1kfq1LPPORneyeVXa7w6tqBQOio-C3U5jJJNkGZcZkqwLIK-Q6xuGbf60HuEIQZpBLgxSHNOSsiC2qfkxrdapaLqCsPHZQ1q8c24IoOSzD0jqi7uL8qB6jIMsHKg7sbF9xGDb5JsBFiRmqbxZ_nqQaObRM39cflXffpHnl-6pCghY__NyNYCxl73CqqSI16ttuHOG8rxwNW6TpuxJKHyiDBwICp-vzv0KWaZ6N"/>
+<span class="text-sm font-semibold text-emerald-800">Admin</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-72 pt-24 p-12 min-h-screen relative overflow-hidden">
+<!-- Background Decorations -->
+<div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -z-10"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-secondary/5 rounded-full blur-3xl -z-10"></div>
+<div class="max-w-6xl mx-auto space-y-16">
+<!-- Header Section -->
+<section class="mb-12">
+<h2 class="text-3xl font-extrabold text-on-surface tracking-tight mb-2">通用弹出框样式 3.0</h2>
+<p class="text-on-surface-variant max-w-2xl">基于 iOS 设计语言重构，通过毛玻璃质感、大圆角与非对称布局，营造既专业又亲和的管理端交互体验。</p>
+</section>
+<!-- Bento Layout for Dialogs Preview -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- 1. 确认弹窗 (Standard Confirmation) -->
+<div class="lg:col-span-4 flex flex-col items-center">
+<p class="text-xs font-bold text-primary tracking-widest uppercase mb-4 opacity-60">CONFIRMATION</p>
+<div class="w-full glass-panel bg-surface-container-lowest/90 border border-white/40 shadow-2xl rounded-3xl p-6 flex flex-col items-center text-center">
+<div class="w-14 h-14 bg-primary-container/30 rounded-2xl flex items-center justify-center mb-5">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="publish" style="font-variation-settings: 'FILL' 1;">publish</span>
+</div>
+<h3 class="text-xl font-bold mb-2">确定发布此动态吗？</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8">发布后，该内容将对社区内所有用户可见，请确保内容符合社区准则。</p>
+<div class="flex w-full gap-3">
+<button class="flex-1 py-3 px-4 bg-surface-container-high text-on-surface font-semibold rounded-2xl hover:bg-surface-variant transition-all">取消</button>
+<button class="flex-1 py-3 px-4 bg-primary text-on-primary font-semibold rounded-2xl hover:shadow-lg hover:shadow-primary/20 transition-all">确定发布</button>
+</div>
+</div>
+</div>
+<!-- 2. 警告弹窗 (Alert/Danger) -->
+<div class="lg:col-span-4 flex flex-col items-center lg:mt-12">
+<p class="text-xs font-bold text-error tracking-widest uppercase mb-4 opacity-60">DANGER ZONE</p>
+<div class="w-full glass-panel bg-surface-container-lowest/95 border border-error-container/10 shadow-2xl rounded-3xl p-6 flex flex-col items-center text-center">
+<div class="w-14 h-14 bg-error-container/20 rounded-full flex items-center justify-center mb-5">
+<span class="material-symbols-outlined text-error text-3xl" data-icon="gpp_maybe" style="font-variation-settings: 'FILL' 1;">gpp_maybe</span>
+</div>
+<h3 class="text-xl font-bold mb-2 text-on-surface">确认永久封禁该用户吗？</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8">此操作无法撤销。该用户的所有相关数据及互动记录将被标记为不可用。</p>
+<div class="flex flex-col w-full gap-2">
+<button class="w-full py-3.5 px-4 bg-error text-on-error font-bold rounded-2xl shadow-xl shadow-error/10 hover:brightness-110 transition-all">确认永久封禁</button>
+<button class="w-full py-3 px-4 text-on-surface-variant font-medium hover:text-on-surface transition-all">我再想想</button>
+</div>
+</div>
+</div>
+<!-- 3. 输入型弹窗 (Input/Reason) -->
+<div class="lg:col-span-4 flex flex-col items-center">
+<p class="text-xs font-bold text-tertiary tracking-widest uppercase mb-4 opacity-60">ACTION REQUIRED</p>
+<div class="w-full glass-panel bg-surface-container-lowest/90 border border-white/40 shadow-2xl rounded-3xl p-6 flex flex-col">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 bg-surface-container rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="edit_note">edit_note</span>
+</div>
+<h3 class="text-lg font-bold">请输入驳回审核原因</h3>
+</div>
+<div class="mb-8">
+<textarea class="w-full h-32 bg-surface-container-low border-0 focus:ring-2 focus:ring-primary/20 rounded-2xl p-4 text-sm placeholder:text-on-surface-variant/40 resize-none" placeholder="请详细说明驳回原因，以便用户修改..."></textarea>
+</div>
+<div class="flex justify-end gap-3">
+<button class="px-6 py-2.5 text-on-surface-variant font-semibold rounded-full hover:bg-surface-container transition-all">取消操作</button>
+<button class="px-8 py-2.5 bg-primary text-on-primary font-bold rounded-full hover:shadow-lg hover:shadow-primary/10 transition-all">提交驳回</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Contextual Documentation Section (Design Standards) -->
+<section class="mt-24 pt-16 border-t border-surface-container">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div>
+<h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
+                            磨砂玻璃质感
+                        </h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">采用 Backdrop Blur 20px 结合 90% 不透明度的 Surface 色值，确保弹窗在任何复杂背景下都能保持清晰的对比度与呼吸感。</p>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="rounded_corner">rounded_corner</span>
+                            iOS 圆角规范
+                        </h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">统一使用 24px (1.5rem) 的超大圆角，软化管理端的冷硬线条，带来更具现代感的视觉触感。</p>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="ads_click">ads_click</span>
+                            非对称交互
+                        </h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">行动按钮采用极具张力的胶囊或大圆角矩形，强调主操作路径，降低管理员在高频工作中的决策成本。</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Contextual FAB (Only shown for demo purposes) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform z-50">
+<span class="material-symbols-outlined" data-icon="add" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</body></html>
